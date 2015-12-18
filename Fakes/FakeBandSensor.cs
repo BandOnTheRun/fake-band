@@ -14,15 +14,13 @@ namespace MSBandAzure.Services.Fakes
         {
 
         }
-        public bool IsSupported
+
+        public virtual bool IsSupported
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
-        public TimeSpan ReportingInterval
+        public virtual TimeSpan ReportingInterval
         {
             get
             {
@@ -35,7 +33,7 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
-        public IEnumerable<TimeSpan> SupportedReportingIntervals
+        public virtual IEnumerable<TimeSpan> SupportedReportingIntervals
         {
             get
             {
@@ -45,19 +43,21 @@ namespace MSBandAzure.Services.Fakes
 
         public event EventHandler<BandSensorReadingEventArgs<T>> ReadingChanged;
 
-        public UserConsent GetCurrentUserConsent()
+        public virtual UserConsent GetCurrentUserConsent()
         {
             return UserConsent.Granted;
         }
 
-        public Task<bool> RequestUserConsentAsync()
+        public virtual Task<bool> RequestUserConsentAsync()
         {
-            throw new NotImplementedException();
+            Task.Delay(300);
+            return Task.FromResult(true);
         }
 
-        public Task<bool> RequestUserConsentAsync(CancellationToken token)
+        public virtual Task<bool> RequestUserConsentAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            Task.Delay(300, token);
+            return Task.FromResult(true);
         }
 
         IDisposable _subscription;

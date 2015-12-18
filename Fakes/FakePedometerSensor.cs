@@ -42,17 +42,19 @@ namespace MSBandAzure.Services.Fakes
 
         public UserConsent GetCurrentUserConsent()
         {
-            throw new NotImplementedException();
+            return UserConsent.Granted;
         }
 
         public Task<bool> RequestUserConsentAsync()
         {
-            throw new NotImplementedException();
+            Task.Delay(300);
+            return Task.FromResult(true);
         }
 
         public Task<bool> RequestUserConsentAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            Task.Delay(300, token);
+            return Task.FromResult(true);
         }
 
         public Task<bool> StartReadingsAsync()

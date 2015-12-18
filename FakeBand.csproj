@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Fakes\FakeAccelerometerReading.cs" />
+    <Compile Include="Fakes\FakeAccelerometerSensor.cs" />
+    <Compile Include="Fakes\FakeAltimeterSensor.cs" />
+    <Compile Include="Fakes\FakeAmbientLightSensor.cs" />
     <Compile Include="Fakes\FakeBandClient.cs" />
     <Compile Include="Fakes\FakeBandDistanceReading.cs" />
     <Compile Include="Fakes\FakeBandHeartReading.cs" />
@@ -45,8 +49,15 @@
     <Compile Include="Fakes\FakeBandSkinTemperatureReading.cs" />
     <Compile Include="Fakes\FakeBandTileManager.cs" />
     <Compile Include="Fakes\FakeBandUVReading.cs" />
+    <Compile Include="Fakes\FakeBarometerSensor.cs" />
+    <Compile Include="Fakes\FakeCaloriesSensor.cs" />
+    <Compile Include="Fakes\FakeContactSensor.cs" />
     <Compile Include="Fakes\FakeDistanceSensor.cs" />
+    <Compile Include="Fakes\FakeGsrSensor.cs" />
+    <Compile Include="Fakes\FakeGyroSensor.cs" />
     <Compile Include="Fakes\FakeHeartRateSensor.cs" />
+    <Compile Include="Fakes\FakePedometerSensor.cs" />
+    <Compile Include="Fakes\FakeRrSensor.cs" />
     <Compile Include="Fakes\FakeSkinTemperatureSensor.cs" />
     <Compile Include="Fakes\FakeUVSensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
