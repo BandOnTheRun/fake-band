@@ -1,32 +1,34 @@
 ﻿using FakeBand.Fakes;
 using Microsoft.Band.Sensors;
-using System;
 
 namespace MSBandAzure.Services.Fakes
 {
     public class FakeBandSensorManager : IBandSensorManager
     {
+        IBandSensor<IBandAccelerometerReading> _accelerometer = new FakeAccelerometerSensor();
         public IBandSensor<IBandAccelerometerReading> Accelerometer
         {
             get
             {
-                throw new NotImplementedException();
+                return _accelerometer;
             }
         }
 
+        IBandSensor<IBandCaloriesReading> _calories = new FakeCaloriesSensor();
         public IBandSensor<IBandCaloriesReading> Calories
         {
             get
             {
-                throw new NotImplementedException();
+                return _calories;
             }
         }
 
+        IBandContactSensor _contact = new FakeContactSensor(); 
         public IBandContactSensor Contact
         {
             get
             {
-                throw new NotImplementedException();
+                return _contact;
             }
         }
 
@@ -41,11 +43,12 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
+        IBandSensor<IBandGyroscopeReading> _gyroscope = new FakeGyroSensor();
         public IBandSensor<IBandGyroscopeReading> Gyroscope
         {
             get
             {
-                throw new NotImplementedException();
+                return _gyroscope;
             }
         }
 
@@ -58,15 +61,16 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
+        IBandSensor<IBandPedometerReading> _pedometer = new FakePedometerSensor();
         public IBandSensor<IBandPedometerReading> Pedometer
         {
             get
             {
-                throw new NotImplementedException();
+                return _pedometer;
             }
         }
 
-        public IBandSensor<IBandSkinTemperatureReading> _skinTemperature = new FakeSkinTemperatureSensor();
+        IBandSensor<IBandSkinTemperatureReading> _skinTemperature = new FakeSkinTemperatureSensor();
         public IBandSensor<IBandSkinTemperatureReading> SkinTemperature
         {
             get
@@ -75,7 +79,7 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
-        public IBandSensor<IBandUVReading> _uv = new FakeUVSensor();
+        IBandSensor<IBandUVReading> _uv = new FakeUVSensor();
         public IBandSensor<IBandUVReading> UV
         {
             get
@@ -84,43 +88,48 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
+        IBandSensor<IBandGsrReading> _gsr = new FakeGsrSensor();
         public IBandSensor<IBandGsrReading> Gsr
         {
             get
             {
-                throw new NotImplementedException();
+                return _gsr;
             }
         }
 
+        IBandSensor<IBandRRIntervalReading> _rRInterval = new FakeRrSensor();
         public IBandSensor<IBandRRIntervalReading> RRInterval
         {
             get
             {
-                throw new NotImplementedException();
+                return _rRInterval;
             }
         }
 
+        IBandSensor<IBandAmbientLightReading> _ambientLight = new FakeAmbientLightSensor();
         public IBandSensor<IBandAmbientLightReading> AmbientLight
         {
             get
             {
-                throw new NotImplementedException();
+                return _ambientLight;
             }
         }
 
+        IBandSensor<IBandBarometerReading> _barometer = new FakeBarometerSensor();
         public IBandSensor<IBandBarometerReading> Barometer
         {
             get
             {
-                throw new NotImplementedException();
+                return _barometer;
             }
         }
 
+        IBandSensor<IBandAltimeterReading> _altimeter = new FakeAltimeterSensor();
         public IBandSensor<IBandAltimeterReading> Altimeter
         {
             get
             {
-                throw new NotImplementedException();
+                return _altimeter;
             }
         }
     }
