@@ -48,16 +48,16 @@ namespace MSBandAzure.Services.Fakes
             return UserConsent.Granted;
         }
 
-        public virtual Task<bool> RequestUserConsentAsync()
+        public async virtual Task<bool> RequestUserConsentAsync()
         {
-            Task.Delay(300);
-            return Task.FromResult(true);
+            await Task.Delay(300);
+            return true;
         }
 
-        public virtual Task<bool> RequestUserConsentAsync(CancellationToken token)
+        public async virtual Task<bool> RequestUserConsentAsync(CancellationToken token)
         {
-            Task.Delay(300, token);
-            return Task.FromResult(true);
+            await Task.Delay(300, token);
+            return true;
         }
 
         IDisposable _subscription;

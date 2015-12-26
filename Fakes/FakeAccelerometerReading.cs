@@ -1,4 +1,5 @@
-﻿using Microsoft.Band.Sensors;
+﻿using System;
+using Microsoft.Band.Sensors;
 
 namespace MSBandAzure.Services.Fakes
 {
@@ -9,6 +10,14 @@ namespace MSBandAzure.Services.Fakes
         public FakeAccelerometerReading(int v)
         {
             this.v = v;
+        }
+
+        public DateTimeOffset Timestamp
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

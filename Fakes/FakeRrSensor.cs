@@ -1,8 +1,13 @@
-﻿using Microsoft.Band.Sensors;
+﻿using System;
+using Microsoft.Band.Sensors;
 
 namespace MSBandAzure.Services.Fakes
 {
-    internal class FakeRrSensor : IBandSensor<IBandRRIntervalReading>
+    internal class FakeRrSensor : FakeBandSensor<IBandRRIntervalReading>
     {
+        public override IBandSensorReading CreateReading()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

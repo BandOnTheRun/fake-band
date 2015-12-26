@@ -27,6 +27,13 @@ namespace MSBandAzure.Services.Fakes
         }
 
         private IBandSensorManager _sensorManager = new FakeBandSensorManager();
+        private IBandInfo bandInfo;
+
+        public FakeBandClient(IBandInfo bandInfo)
+        {
+            this.bandInfo = bandInfo;
+        }
+
         public IBandSensorManager SensorManager
         {
             get
