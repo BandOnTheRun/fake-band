@@ -3,6 +3,7 @@ using Microsoft.Band.Personalization;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace MSBandAzure.Services.Fakes
 {
@@ -67,9 +68,24 @@ namespace MSBandAzure.Services.Fakes
 
     public class FakeBandPersonalizationManager : IBandPersonalizationManager
     {
-        public Task<BandImage> GetMeTileImageAsync()
+        BandTheme _bandTheme;
+
+        public FakeBandPersonalizationManager()
         {
-            throw new NotImplementedException();
+            _bandTheme = CreateBandTheme();
+        }
+
+        public async Task<BandImage> GetMeTileImageAsync()
+        {
+            var ti = typeof(BandImage).GetTypeInfo();
+            var bi = (BandImage)Activator.CreateInstance(typeof(BandImage));
+
+            
+            return bi;
+            //byte[] data = null;
+            //var bi = new BandImage();
+
+            //throw new NotImplementedException();
         }
 
         public Task<BandImage> GetMeTileImageAsync(CancellationToken cancel)
@@ -105,7 +121,7 @@ namespace MSBandAzure.Services.Fakes
             Task.Run(() =>
             {
                 Task.Delay(500);
-                tcs.SetResult(CreateBandTheme());
+                tcs.SetResult(_bandTheme);
             });
             
             return tcs.Task;
@@ -117,12 +133,15 @@ namespace MSBandAzure.Services.Fakes
             Task.Run(() =>
             {
                 Task.Delay(500, cancel);
-                tcs.SetResult(CreateBandTheme());
+                tcs.SetResult(_bandTheme);
             });
 
             return tcs.Task;
         }
 
+        // Create a bitmap for the Me Tile image. 
+        // The image must be 310x102 pixels for Microsoft Band 1 
+        // and 310x102 or 310x128 pixels for Microsoft Band 2.
         public Task SetMeTileImageAsync(BandImage image)
         {
             throw new NotImplementedException();
@@ -135,12 +154,42 @@ namespace MSBandAzure.Services.Fakes
 
         public Task SetThemeAsync(BandTheme theme)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Run(() =>
+            {
+                Task.Delay(500);
+
+                _bandTheme.HighContrast = theme.HighContrast;
+                _bandTheme.Highlight = theme.Highlight;
+                _bandTheme.Lowlight = theme.Lowlight;
+                _bandTheme.Muted = theme.Muted;
+                _bandTheme.SecondaryText = theme.SecondaryText;
+                _bandTheme.Base = theme.Base;
+
+                tcs.SetResult(true);
+            });
+
+            return tcs.Task;
         }
 
         public Task SetThemeAsync(BandTheme theme, CancellationToken cancel)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Run(() =>
+            {
+                Task.Delay(500, cancel);
+
+                _bandTheme.HighContrast = theme.HighContrast;
+                _bandTheme.Highlight = theme.Highlight;
+                _bandTheme.Lowlight = theme.Lowlight;
+                _bandTheme.Muted = theme.Muted;
+                _bandTheme.SecondaryText = theme.SecondaryText;
+                _bandTheme.Base = theme.Base;
+
+                tcs.SetResult(true);
+            });
+
+            return tcs.Task;
         }
     }
 }
