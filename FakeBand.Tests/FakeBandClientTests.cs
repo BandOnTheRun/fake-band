@@ -1,10 +1,7 @@
-﻿using FakeBand.Fakes;
+﻿using FakeBand.Tests.Utils;
 using Microsoft.Band;
 using Microsoft.Band.Sensors;
-using MSBandAzure.Services.Fakes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
@@ -16,26 +13,9 @@ namespace FakeBand.Tests
 {
     public class FakeBandClientTests
     {
-        public async Task<IBandClient> GetBandClientAsync()
-        {
-            FakeBandClientManager.Configure(new FakeBandClientManagerOptions
-            {
-                Bands = new List<IBandInfo>
-                {
-                    new FakeBandInfo(BandConnectionType.Bluetooth, "Fake Band 1"),
-                }
-            });
-
-            var bands = await FakeBandClientManager.Instance.GetBandsAsync();
-            var bandInfo = bands.First();
-            var bandClient = await FakeBandClientManager.Instance.ConnectAsync(bandInfo);
-
-            return bandClient;
-        }
-
         public async Task<int> SetupSensor<T>(IBandSensor<T> sensor, int timeout, int value) where T : IBandSensorReading
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
 
             var uc = sensor.GetCurrentUserConsent();
             bool isConsented = false;
@@ -72,7 +52,7 @@ namespace FakeBand.Tests
         [Fact]
         public async Task FakeBandClient_TestValueReceived_ConnectHeartRateAndReceiveOneValue()
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
             var res = await SetupSensor(bandClient.SensorManager.HeartRate, 5000, 5858);
 
             Assert.Equal(5858, res);
@@ -81,7 +61,7 @@ namespace FakeBand.Tests
         [Fact]
         public async Task FakeBandClient_TestValueReceived_ConnectSkinTempAndReceiveOneValue()
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
             var res = await SetupSensor(bandClient.SensorManager.SkinTemperature, 5000, 5858);
 
             Assert.Equal(5858, res);
@@ -90,7 +70,7 @@ namespace FakeBand.Tests
         [Fact]
         public async Task FakeBandClient_TestValueReceived_ConnectUVAndReceiveOneValue()
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
             var res = await SetupSensor(bandClient.SensorManager.UV, 5000, 5858);
 
             Assert.Equal(5858, res);
@@ -99,32 +79,32 @@ namespace FakeBand.Tests
         [Fact]
         public async Task FakeBandClient_SetMeTile_SetValidImage()
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
 
             // TODO: load image from base64 encoded byte array and assert expected content
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-            var imgFolder = await storageFolder.GetFolderAsync("Images");
-            var file = await imgFolder.GetFileAsync("BandImage.png");
+            var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Images/BandImage.png"));
             var str = await file.OpenReadAsync();
-            var wb = new WriteableBitmap(1, 1);
-
-            await wb.SetSourceAsync(str);
-
-            var bandImg = wb.ToBandImage();
-            await bandClient.PersonalizationManager.SetMeTileImageAsync(bandImg);
-            var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+                var wb = new WriteableBitmap(1, 1);
+
+                await wb.SetSourceAsync(str);
+
+                var bandImg = wb.ToBandImage();
+                await bandClient.PersonalizationManager.SetMeTileImageAsync(bandImg);
+                var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
+
                 var wbmp = bandImage.ToWriteableBitmap();
                 Assert.True(wbmp.PixelHeight > 0);
                 Assert.True(wbmp.PixelWidth > 0);
-                Assert.True(wbmp.PixelBuffer.Length == wbmp.PixelHeight * wbmp.PixelWidth * 2);
+                Assert.True(wbmp.PixelBuffer.Length == wbmp.PixelHeight * wbmp.PixelWidth * 4);
             });
         }
-            [Fact]
+
+        [Fact]
         public async Task FakeBandClient_GetMeTile_GetsValidImage()
         {
-            var bandClient = await GetBandClientAsync();
+            var bandClient = await TestUtils.GetBandClientAsync();
             var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
 
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -132,7 +112,7 @@ namespace FakeBand.Tests
                 var wb = bandImage.ToWriteableBitmap();
                 Assert.True(wb.PixelHeight > 0);
                 Assert.True(wb.PixelWidth > 0);
-                Assert.True(wb.PixelBuffer.Length == wb.PixelHeight * wb.PixelWidth * 2);
+                Assert.True(wb.PixelBuffer.Length == wb.PixelHeight * wb.PixelWidth * 4);
             });
         }
     }
