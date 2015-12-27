@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using Xunit;
 
@@ -99,6 +101,7 @@ namespace FakeBand.Tests
         {
             var bandClient = await GetBandClientAsync();
 
+            // TODO: load image from base64 encoded byte array and assert expected content
             StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
             var imgFolder = await storageFolder.GetFolderAsync("Images");
             var file = await imgFolder.GetFileAsync("BandImage.png");
@@ -109,15 +112,28 @@ namespace FakeBand.Tests
 
             var bandImg = wb.ToBandImage();
             await bandClient.PersonalizationManager.SetMeTileImageAsync(bandImg);
+            var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                var wbmp = bandImage.ToWriteableBitmap();
+                Assert.True(wbmp.PixelHeight > 0);
+                Assert.True(wbmp.PixelWidth > 0);
+                Assert.True(wbmp.PixelBuffer.Length == wbmp.PixelHeight * wbmp.PixelWidth * 2);
+            });
         }
-
-        [Fact]
+            [Fact]
         public async Task FakeBandClient_GetMeTile_GetsValidImage()
         {
             var bandClient = await GetBandClientAsync();
             var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
 
-            // how do we do work on dispatcher thread here? (so we can test image produced using Writeablebitmap)
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                var wb = bandImage.ToWriteableBitmap();
+                Assert.True(wb.PixelHeight > 0);
+                Assert.True(wb.PixelWidth > 0);
+                Assert.True(wb.PixelBuffer.Length == wb.PixelHeight * wb.PixelWidth * 2);
+            });
         }
     }
 }
