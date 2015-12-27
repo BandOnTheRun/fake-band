@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Xunit;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.IO;
 
 namespace FakeBand.Tests
 {
@@ -33,7 +31,7 @@ namespace FakeBand.Tests
             return bandClient;
         }
 
-        public async Task<int> SetupSensor<T>(IBandSensor<T> sensor, int timeout, int value) where T: IBandSensorReading
+        public async Task<int> SetupSensor<T>(IBandSensor<T> sensor, int timeout, int value) where T : IBandSensorReading
         {
             var bandClient = await GetBandClientAsync();
 
@@ -118,16 +116,8 @@ namespace FakeBand.Tests
         {
             var bandClient = await GetBandClientAsync();
             var bandImage = await bandClient.PersonalizationManager.GetMeTileImageAsync();
+
+            // how do we do work on dispatcher thread here? (so we can test image produced using Writeablebitmap)
         }
-
-        //        var meimage = await iconsfolder.GetFileAsync("MSBandEmpire.jpg");
-
-        //using (var stream = await meimage.OpenAsync(FileAccessMode.Read))
-        //{
-        //    var wb = new WriteableBitmap(1, 1);
-        //    wb.SetSource(stream);
-        //    await _band.PersonalizationManager.SetMeTileImageAsync(wb.ToBandImage());
-        //}
-
     }
-    }
+}
