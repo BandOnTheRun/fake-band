@@ -6,69 +6,10 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Linq;
 using System.IO;
-using System.Runtime.CompilerServices;
+using FakeBand.Utils;
 
 namespace MSBandAzure.Services.Fakes
 {
-    class ColorScale
-    {
-        public class Colour
-        {
-            public byte R { get; set; }
-            public byte G { get; set; }
-            public byte B { get; set; }
-            public byte A { get; set; }
-
-            public static Colour FromArgb(byte a, byte r, byte g, byte b)
-            {
-                return new Colour { A = a, R = r, G = g, B = b };
-            }
-        }
-
-        public static Colour ColorFromHSL(double h, double s, double l)
-        {
-            double r = 0, g = 0, b = 0;
-            if (l != 0)
-            {
-                if (s == 0)
-                    r = g = b = l;
-                else
-                {
-                    double temp2;
-                    if (l < 0.5)
-                        temp2 = l * (1.0 + s);
-                    else
-                        temp2 = l + s - (l * s);
-
-                    double temp1 = 2.0 * l - temp2;
-
-                    r = GetColorComponent(temp1, temp2, h + 1.0 / 3.0);
-                    g = GetColorComponent(temp1, temp2, h);
-                    b = GetColorComponent(temp1, temp2, h - 1.0 / 3.0);
-                }
-            }
-            return Colour.FromArgb(255, (byte)(255 * r), (byte)(255 * g), (byte)(255 * b));
-
-        }
-
-        private static double GetColorComponent(double temp1, double temp2, double temp3)
-        {
-            if (temp3 < 0.0)
-                temp3 += 1.0;
-            else if (temp3 > 1.0)
-                temp3 -= 1.0;
-
-            if (temp3 < 1.0 / 6.0)
-                return temp1 + (temp2 - temp1) * 6.0 * temp3;
-            else if (temp3 < 0.5)
-                return temp2;
-            else if (temp3 < 2.0 / 3.0)
-                return temp1 + ((temp2 - temp1) * ((2.0 / 3.0) - temp3) * 6.0);
-            else
-                return temp1;
-        }
-    }
-
     public class FakeBandPersonalizationManager : IBandPersonalizationManager
     {
         BandTheme _bandTheme;
@@ -183,12 +124,28 @@ namespace MSBandAzure.Services.Fakes
         // and 310x102 or 310x128 pixels for Microsoft Band 2.
         public Task SetMeTileImageAsync(BandImage image)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Run(() =>
+            {
+                Task.Delay(500);
+                _meTileImage = image;
+                tcs.SetResult(true);
+            });
+
+            return tcs.Task;
         }
 
         public Task SetMeTileImageAsync(BandImage image, CancellationToken cancel)
         {
-            throw new NotImplementedException();
+            var tcs = new TaskCompletionSource<bool>();
+            Task.Run(() =>
+            {
+                Task.Delay(500, cancel);
+                _meTileImage = image;
+                tcs.SetResult(true);
+            });
+
+            return tcs.Task;
         }
 
         public Task SetThemeAsync(BandTheme theme)
@@ -229,277 +186,6 @@ namespace MSBandAzure.Services.Fakes
             });
 
             return tcs.Task;
-        }
-    }
-
-    public static class Exts
-    {
-        public static byte[] GetPixelArrayBgr565(this Stream stream)
-        {
-            byte[] bgr565Array;
-            using (Bgr565Pbgra32ConversionStream bgr565Pbgra32ConversionStream = new Bgr565Pbgra32ConversionStream((int)stream.Length))
-            {
-                stream.CopyTo(bgr565Pbgra32ConversionStream, 8192);
-                bgr565Array = bgr565Pbgra32ConversionStream.Bgr565Array;
-            }
-            return bgr565Array;
-        }
-    }
-
-    internal abstract class ImageConversionStreamBase : Stream
-    {
-        public override bool CanRead
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        public override bool CanWrite
-        {
-            get
-            {
-                return true;
-            }
-        }
-
-        public override bool CanSeek
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        public override bool CanTimeout
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        public override void SetLength(long value)
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override void Flush()
-        {
-        }
-    }
-
-    internal class ByteArrayProxyStream : ImageConversionStreamBase
-    {
-        private byte[] buffer;
-
-        private int offset;
-
-        private int length;
-
-        private int position;
-
-        public override bool CanRead
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        public override long Length
-        {
-            get
-            {
-                return (long)this.length;
-            }
-        }
-
-        public override long Position
-        {
-            get
-            {
-                return (long)this.position;
-            }
-            set
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
-        public void SetBuffer(byte[] buffer, int offset, int length)
-        {
-            this.buffer = buffer;
-            this.offset = offset;
-            this.length = length;
-            this.position = 0;
-        }
-
-        public void ForgetBuffer()
-        {
-            this.buffer = null;
-        }
-
-        public override int Read(byte[] argb32Array, int offset, int count)
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override void Write(byte[] argb32Array, int offset, int count)
-        {
-            throw new InvalidOperationException();
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override void WriteByte(byte value)
-        {
-            byte[] arg_1F_0 = this.buffer;
-            int arg_1D_0 = this.offset;
-            int num = this.position;
-            this.position = num + 1;
-            arg_1F_0[arg_1D_0 + num] = value;
-        }
-    }
-    internal class Bgr565Pbgra32ConversionStream : ImageConversionStreamBase
-    {
-        private const int pixelWidthFactor = 2;
-
-        private int argb32Index;
-
-        private ByteArrayProxyStream writeProxy;
-
-        public override long Length
-        {
-            get
-            {
-                return (long)(this.Bgr565Array.Length * 2);
-            }
-        }
-
-        public override long Position
-        {
-            get
-            {
-                return (long)this.argb32Index;
-            }
-            set
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
-        public byte[] Bgr565Array
-        {
-            get;
-            private set;
-        }
-
-        public Bgr565Pbgra32ConversionStream(int argb32ByteCount)
-        {
-            this.Bgr565Array = new byte[argb32ByteCount / 2];
-        }
-
-        public Bgr565Pbgra32ConversionStream(byte[] bgr565Array)
-        {
-            this.Bgr565Array = bgr565Array;
-        }
-
-        public override int Read(byte[] argb32Array, int offset, int count)
-        {
-            if (this.writeProxy == null)
-            {
-                this.writeProxy = new ByteArrayProxyStream();
-            }
-            this.writeProxy.SetBuffer(argb32Array, offset, count);
-            try
-            {
-                this.CopyToInternal(this.writeProxy, count);
-            }
-            finally
-            {
-                this.writeProxy.ForgetBuffer();
-            }
-            return count;
-        }
-
-        public override void Write(byte[] argb32Array, int offset, int count)
-        {
-            int num = this.argb32Index / 2;
-            while ((long)this.argb32Index < this.Length && count > 0)
-            {
-                switch (this.argb32Index % 4)
-                {
-                    case 0:
-                        {
-                            byte[] expr_3B_cp_0 = this.Bgr565Array;
-                            int expr_3B_cp_1 = num;
-                            expr_3B_cp_0[expr_3B_cp_1] |= (byte)((uint)(argb32Array[offset] & 248) >> 3);
-                            break;
-                        }
-                    case 1:
-                        {
-                            byte[] arg_59_0 = this.Bgr565Array;
-                            int expr_55 = num++;
-                            arg_59_0[expr_55] |= (byte)((argb32Array[offset] & 28) << 3);
-                            byte[] expr_78_cp_0 = this.Bgr565Array;
-                            int expr_78_cp_1 = num;
-                            expr_78_cp_0[expr_78_cp_1] |= (byte)((uint)(argb32Array[offset] & 224) >> 5);
-                            break;
-                        }
-                    case 2:
-                        {
-                            byte[] arg_96_0 = this.Bgr565Array;
-                            int expr_92 = num++;
-                            arg_96_0[expr_92] |= (byte)(argb32Array[offset] & 248);
-                            break;
-                        }
-                }
-                offset++;
-                this.argb32Index++;
-                count--;
-            }
-        }
-
-        public new void CopyTo(Stream dest)
-        {
-            this.CopyToInternal(dest, (int)this.Length - this.argb32Index);
-        }
-
-        public new void CopyTo(Stream dest, int bufferSize)
-        {
-            this.CopyToInternal(dest, (int)this.Length - this.argb32Index);
-        }
-
-        private void CopyToInternal(Stream dest, int count)
-        {
-            int num = this.argb32Index / 2;
-            while ((long)this.argb32Index < this.Length && count > 0)
-            {
-                switch (this.argb32Index % 4)
-                {
-                    case 0:
-                        dest.WriteByte((byte)((Bgr565Array[num] & 31) * 255 / 31));
-                        break;
-                    case 1:
-                        dest.WriteByte((byte)(((this.Bgr565Array[num++] & 224) >> 5 | (int)(this.Bgr565Array[num] & 7) << 3) * 255 / 63));
-                        break;
-                    case 2:
-                        dest.WriteByte((byte)(((this.Bgr565Array[num] & 248) >> 3) * 255 / 31));
-                        break;
-                    case 3:
-                        dest.WriteByte(255);
-                        num++;
-                        break;
-                }
-                this.argb32Index++;
-                count--;
-            }
         }
     }
 }
