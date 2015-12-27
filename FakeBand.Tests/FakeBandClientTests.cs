@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Xunit;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.IO;
 
 namespace FakeBand.Tests
 {
