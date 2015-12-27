@@ -1,0 +1,2 @@
+ nuget pack .\FakeBand.csproj -Prop Configuration=Release -Symbols -IncludeReferencedProjects
+ nuget push .\FakeBand.0.0.2.0.symbols.nupkg -s http://staging.nuget.org
