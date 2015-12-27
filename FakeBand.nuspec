@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FakeBand</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/BandOnTheRun/fake-band/blob/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/BandOnTheRun/fake-band</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/15046428?v=3&amp;s=200</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library to enable programming against the Band SDK model without connecting a physical band</description>
+    <releaseNotes>Added dummy Me Tile APIs, Added more dummy sensors</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>Band</tags>
+  </metadata>
+</package>
