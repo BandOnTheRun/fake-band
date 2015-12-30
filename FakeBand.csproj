@@ -39,6 +39,7 @@
     <Compile Include="Fakes\FakeAltimeterReading.cs" />
     <Compile Include="Fakes\FakeAltimeterSensor.cs" />
     <Compile Include="Fakes\FakeAmbientLightSensor.cs" />
+    <Compile Include="Fakes\FakeBandCaloriesReading.cs" />
     <Compile Include="Fakes\FakeBandClient.cs" />
     <Compile Include="Fakes\FakeBandClientManager.cs" />
     <Compile Include="Fakes\FakeBandDistanceReading.cs" />
