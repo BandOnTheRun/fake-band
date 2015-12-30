@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Fakes\FakeAccelerometerReading.cs" />
     <Compile Include="Fakes\FakeAccelerometerSensor.cs" />
+    <Compile Include="Fakes\FakeAltimeterReading.cs" />
     <Compile Include="Fakes\FakeAltimeterSensor.cs" />
     <Compile Include="Fakes\FakeAmbientLightSensor.cs" />
     <Compile Include="Fakes\FakeBandCaloriesReading.cs" />
