@@ -7,7 +7,7 @@ namespace MSBandAzure.Services.Fakes
     {
         public override IBandSensorReading CreateReading()
         {
-            throw new NotImplementedException();
+            return new FakeBandCaloriesReading();
         }
     }
 }
