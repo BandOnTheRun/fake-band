@@ -16,7 +16,8 @@ namespace MSBandAzure.Services.Fakes
         {
             get
             {
-                throw new NotImplementedException();
+                return DateTimeOffset.Now;
+                ;
             }
         }
     }
