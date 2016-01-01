@@ -1,13 +1,14 @@
 ﻿using FakeBand.Fakes;
 using Microsoft.Band;
 using MSBandAzure.Services.Fakes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace FakeBand.Tests.Utils
 {
-    public class TestUtils
+    public static class TestUtils
     {
         public static async Task<IBandClient> GetBandClientAsync()
         {
@@ -24,6 +25,14 @@ namespace FakeBand.Tests.Utils
             var bandClient = await FakeBandClientManager.Instance.ConnectAsync(bandInfo);
 
             return bandClient;
+        }
+
+        public static async Task TimeoutAfter(this Task task, int millisecondsTimeout)
+        {
+            if (task == await Task.WhenAny(task, Task.Delay(millisecondsTimeout)))
+                await task;
+            else
+                throw new TimeoutException();
         }
     }
 }

@@ -20,16 +20,20 @@ namespace MSBandAzure.Services.Fakes
             get { return true; }
         }
 
+        private TimeSpan _reportingInterval = TimeSpan.FromSeconds(1);
+
         public virtual TimeSpan ReportingInterval
         {
             get
             {
-                throw new NotImplementedException();
+                return _reportingInterval;
             }
 
             set
             {
-                throw new NotImplementedException();
+                if (_reportingInterval == value)
+                    return;
+                _reportingInterval = value;
             }
         }
 
@@ -72,7 +76,7 @@ namespace MSBandAzure.Services.Fakes
         private bool Subscribe()
         {
             // use an rx observable to simulate the sensor
-            var obs = Observable.Interval(TimeSpan.FromSeconds(1));
+            var obs = Observable.Interval(ReportingInterval);
             _subscription = obs.Subscribe(l =>
             {
                 var rc = ReadingChanged;
@@ -81,7 +85,6 @@ namespace MSBandAzure.Services.Fakes
 
                 var t = (T)CreateReading();
 
-                //var t = (T)((IBandSensorReading)(new FakeBandHeartRateReading()));
                 BandSensorReadingEventArgs<T> e = new BandSensorReadingEventArgs<T>(t);
                 rc(this, e);
             });

@@ -36,15 +36,14 @@ namespace FakeBand.Tests
                 await sensor.StartReadingsAsync();
             }
 
-            var timeoutTask = Task.Delay(5000);
-            await tcs.Task;
-
-            var completedTaskId = Task.WaitAny(timeoutTask, tcs.Task);
-
-            // assert on the index of the completed task..
-            Assert.Equal(1, completedTaskId);
-
-            await sensor.StopReadingsAsync();
+            try
+            {
+                await tcs.Task.TimeoutAfter(timeout);
+            }
+            finally
+            {
+                await sensor.StopReadingsAsync();
+            }
 
             return tcs.Task.Result;
         }
@@ -125,7 +124,7 @@ namespace FakeBand.Tests
         public async Task FakeBandClient_TestValueReceived_ConnectContactAndReceiveOneValue()
         {
             var bandClient = await TestUtils.GetBandClientAsync();
-            var res = await SetupSensor(bandClient.SensorManager.Contact, 5000, 5858);
+            var res = await SetupSensor(bandClient.SensorManager.Contact, 50000, 5858);
 
             Assert.Equal(5858, res);
         }
