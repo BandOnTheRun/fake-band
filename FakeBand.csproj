@@ -47,6 +47,7 @@
     <Compile Include="Fakes\FakeBandHeartReading.cs" />
     <Compile Include="Fakes\FakeBandInfo.cs" />
     <Compile Include="Fakes\FakeBandNotificationManager.cs" />
+    <Compile Include="Fakes\FakeBandPedometerReading.cs" />
     <Compile Include="Fakes\FakeBandPersonalizationManager.cs" />
     <Compile Include="Fakes\FakeBandRRIntervalReading.cs" />
     <Compile Include="Fakes\FakeBandSensor.cs" />
