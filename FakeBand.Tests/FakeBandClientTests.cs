@@ -24,6 +24,9 @@ namespace FakeBand.Tests
                 isConsented = await sensor.RequestUserConsentAsync();
             }
 
+            // To make the tests run quicker
+            sensor.ReportingInterval = TimeSpan.FromMilliseconds(500);
+
             var tcs = new TaskCompletionSource<int>();
             if (isConsented || uc == UserConsent.Granted)
             {
