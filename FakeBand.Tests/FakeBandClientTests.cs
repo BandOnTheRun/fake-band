@@ -104,6 +104,15 @@ namespace FakeBand.Tests
         }
 
         [Fact]
+        public async Task FakeBandClient_TestValueReceived_ConnectContactAndReceiveOneValue()
+        {
+            var bandClient = await TestUtils.GetBandClientAsync();
+            var res = await SetupSensor(bandClient.SensorManager.Contact, 5000, 5858);
+
+            Assert.Equal(5858, res);
+        }
+
+        [Fact]
         public async Task FakeBandClient_SetMeTile_SetValidImage()
         {
             var bandClient = await TestUtils.GetBandClientAsync();

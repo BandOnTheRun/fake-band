@@ -1,4 +1,5 @@
-﻿using FakeBand.Fakes;
+﻿using System;
+using FakeBand.Fakes;
 using Microsoft.Band.Sensors;
 
 namespace MSBandAzure.Services.Fakes
@@ -23,7 +24,7 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
-        IBandContactSensor _contact = new FakeContactSensor(); 
+        private IBandContactSensor _contact = new FakeDeviceContactSensor();
         public IBandContactSensor Contact
         {
             get

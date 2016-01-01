@@ -90,7 +90,7 @@ namespace MSBandAzure.Services.Fakes
 
         public Task<bool> StartReadingsAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return Task.Run(new Func<bool>(Subscribe), token);
         }
 
         private void CancelSubscription()
