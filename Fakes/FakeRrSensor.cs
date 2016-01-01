@@ -5,9 +5,10 @@ namespace MSBandAzure.Services.Fakes
 {
     internal class FakeRrSensor : FakeBandSensor<IBandRRIntervalReading>
     {
+        Random _rand = new Random();
         public override IBandSensorReading CreateReading()
         {
-            throw new NotImplementedException();
+            return new FakeBandRRIntervalReading(_rand.Next(1, 5));
         }
     }
 }
