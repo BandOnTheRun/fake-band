@@ -6,6 +6,7 @@ using Microsoft.Band.Sensors;
 using Microsoft.Band.Tiles;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 
 namespace MSBandAzure.Services.Fakes
 {
@@ -60,6 +61,11 @@ namespace MSBandAzure.Services.Fakes
             this._bandVersion = version;
         }
 
+        internal static Guid GetApplicationIdFromName(byte[] nameAndOwnerId, ushort friendlyNameLength)
+        {
+            throw new NotImplementedException();
+        }
+
         public IBandSensorManager SensorManager
         {
             get
@@ -68,11 +74,28 @@ namespace MSBandAzure.Services.Fakes
             }
         }
 
+        IBandTileManager _tileManager;
+
         public IBandTileManager TileManager
         {
             get
             {
-                return new FakeBandTileManager();
+                if (_tileManager == null)
+                {
+                    IBandConstants consts = null;
+                        
+                    if (_bandVersion == BandVersion.BandOne)
+                    {
+                        consts = new FakeBandOneConstants();
+                    }
+                    else
+                    {
+                        consts = new FakeBandTwoConstants();
+                    }
+
+                    _tileManager = new FakeBandTileManager(consts);
+                }
+                return _tileManager;
             }
         }
 
