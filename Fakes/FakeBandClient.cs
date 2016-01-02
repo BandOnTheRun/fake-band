@@ -7,6 +7,7 @@ using Microsoft.Band.Tiles;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
+using FakeBand.Fakes;
 
 namespace MSBandAzure.Services.Fakes
 {
@@ -16,7 +17,7 @@ namespace MSBandAzure.Services.Fakes
         BandTwo,
     };
 
-    public class FakeBandClient : IBandClient
+    public class FakeBandClient : IBandClient, IAppIdProvider
     {
         internal CargoVersions FirmwareVersions
         {
@@ -39,7 +40,7 @@ namespace MSBandAzure.Services.Fakes
         {
             get
             {
-                return new FakeBandNotificationManager();
+                return new FakeBandNotificationManager(this, _container);
             }
         }
 
@@ -75,6 +76,7 @@ namespace MSBandAzure.Services.Fakes
         }
 
         IBandTileManager _tileManager;
+        private FakeTileContainer _container = new FakeTileContainer();
 
         public IBandTileManager TileManager
         {
@@ -93,7 +95,7 @@ namespace MSBandAzure.Services.Fakes
                         consts = new FakeBandTwoConstants();
                     }
 
-                    _tileManager = new FakeBandTileManager(consts);
+                    _tileManager = new FakeBandTileManager(consts, this, _container);
                 }
                 return _tileManager;
             }
@@ -125,6 +127,11 @@ namespace MSBandAzure.Services.Fakes
         {
             await Task.Delay(200, token);
             return "1.0.0.0";
+        }
+
+        public Guid GetAppId()
+        {
+            return new Guid("C7600DBA-0220-4866-A7BA-08B23C2225C8"); // TODO: Fix this - all this to be configured..
         }
     }
 }

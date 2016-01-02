@@ -74,8 +74,11 @@
     <Compile Include="Fakes\FakePedometerSensor.cs" />
     <Compile Include="Fakes\FakeRrSensor.cs" />
     <Compile Include="Fakes\FakeSkinTemperatureSensor.cs" />
+    <Compile Include="Fakes\FakeTileContainer.cs" />
     <Compile Include="Fakes\FakeUVSensor.cs" />
+    <Compile Include="Fakes\IAppIdProvider.cs" />
     <Compile Include="Fakes\IBandConstants.cs" />
+    <Compile Include="Fakes\ITileContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\BandTileExtensions.cs" />
     <Compile Include="Utils\BandTypeConstants.cs" />
