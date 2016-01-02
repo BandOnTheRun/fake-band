@@ -77,6 +77,8 @@
     <Compile Include="Utils\BandTypeConstants.cs" />
     <Compile Include="Utils\Bgr565Pbgra32ConversionStream.cs" />
     <Compile Include="Utils\ByteArrayProxyStream.cs" />
+    <Compile Include="Utils\CargoVersion.cs" />
+    <Compile Include="Utils\CargoVersions.cs" />
     <Compile Include="Utils\ColorScale.cs" />
     <Compile Include="Utils\Exts.cs" />
   </ItemGroup>
