@@ -58,7 +58,6 @@
     <Compile Include="Fakes\FakeBandUVReading.cs" />
     <Compile Include="Fakes\FakeBarometerSensor.cs" />
     <Compile Include="Fakes\FakeCaloriesSensor.cs" />
-    <Compile Include="Fakes\FakeContactSensor.cs" />
     <Compile Include="Fakes\FakeDeviceContactSensor.cs" />
     <Compile Include="Fakes\FakeDistanceSensor.cs" />
     <Compile Include="Fakes\FakeGsrSensor.cs" />
