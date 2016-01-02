@@ -62,11 +62,461 @@ namespace FakeBand {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A BandTile must have a non-empty Name property. .
+        ///   Looks up a localized string similar to Unexpected packet type encountered while reading command status packet..
+        /// </summary>
+        internal static string BadDeviceCommandStatusPacket {
+            get {
+                return ResourceManager.GetString("BadDeviceCommandStatusPacket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Band already has its maximum number of Tiles..
+        /// </summary>
+        internal static string BandAtMaxTileCapacity {
+            get {
+                return ResourceManager.GetString("BandAtMaxTileCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A BandTile must have a non-empty Name property..
         /// </summary>
         internal static string BandTileEmptyName {
             get {
                 return ResourceManager.GetString("BandTileEmptyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A BandTile must have a non-empty Tile ID..
+        /// </summary>
+        internal static string BandTileEmptyTileId {
+            get {
+                return ResourceManager.GetString("BandTileEmptyTileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Name property must be no greater than {0} characters..
+        /// </summary>
+        internal static string BandTileNameLengthExceeded {
+            get {
+                return ResourceManager.GetString("BandTileNameLengthExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A BandTile must have a non-null SmallIcon property..
+        /// </summary>
+        internal static string BandTileNoSmallIcon {
+            get {
+                return ResourceManager.GetString("BandTileNoSmallIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A BandTile must have a non-null TileIcon property..
+        /// </summary>
+        internal static string BandTileNoTileIcon {
+            get {
+                return ResourceManager.GetString("BandTileNoTileIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Null page templates not allowed..
+        /// </summary>
+        internal static string BandTileNullTemplateEncountered {
+            get {
+                return ResourceManager.GetString("BandTileNullTemplateEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Band Tile name length exceeds that allowed by owned Tiles. .
+        /// </summary>
+        internal static string BandTileOwnedTileNameExceedsLength {
+            get {
+                return ResourceManager.GetString("BandTileOwnedTileNameExceedsLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The data element count  is invalid..
+        /// </summary>
+        internal static string BandTilePageDataInvalidElementChildCount {
+            get {
+                return ResourceManager.GetString("BandTilePageDataInvalidElementChildCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Null page data elements are not allowed..
+        /// </summary>
+        internal static string BandTilePageDataNullElementEncountered {
+            get {
+                return ResourceManager.GetString("BandTilePageDataNullElementEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page template byte count exceeds the maximum..
+        /// </summary>
+        internal static string BandTilePageTemplateBlobTooBig {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateBlobTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A duplicate page element or element Id was encountered..
+        /// </summary>
+        internal static string BandTilePageTemplateDuplicateElementOrId {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateDuplicateElementOrId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page template check digit mismatch..
+        /// </summary>
+        internal static string BandTilePageTemplateInvalidCheckDigit {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateInvalidCheckDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page template element count is invalid..
+        /// </summary>
+        internal static string BandTilePageTemplateInvalidElementChildCount {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateInvalidElementChildCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Null page template elements not not allowed..
+        /// </summary>
+        internal static string BandTilePageTemplateNullElementEncountered {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateNullElementEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected element type..
+        /// </summary>
+        internal static string BandTilePageTemplateUnexpectedElementType {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateUnexpectedElementType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid or unknown element type..
+        /// </summary>
+        internal static string BandTilePageTemplateUnknownOrInvalidElementType {
+            get {
+                return ResourceManager.GetString("BandTilePageTemplateUnknownOrInvalidElementType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page icon count exceeds the maximum..
+        /// </summary>
+        internal static string BandTileTooManyIcons {
+            get {
+                return ResourceManager.GetString("BandTileTooManyIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page template count exceeds the maximum..
+        /// </summary>
+        internal static string BandTileTooManyTemplates {
+            get {
+                return ResourceManager.GetString("BandTileTooManyTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Barcode data cannot be empty..
+        /// </summary>
+        internal static string BarcodeDataEmpty {
+            get {
+                return ResourceManager.GetString("BarcodeDataEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value exceeds maximum barcode data length {0}..
+        /// </summary>
+        internal static string BarcodeDataTooLong {
+            get {
+                return ResourceManager.GetString("BarcodeDataTooLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot write the byte value to the stream..
+        /// </summary>
+        internal static string ByteWriteFailure {
+            get {
+                return ResourceManager.GetString("ByteWriteFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CommandStatus is not available until all data has been transferred to/from the band..
+        /// </summary>
+        internal static string CargoCommandStatusUnavailable {
+            get {
+                return ResourceManager.GetString("CargoCommandStatusUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device status code: 0x{0:X8} received..
+        /// </summary>
+        internal static string CommandStatusError {
+            get {
+                return ResourceManager.GetString("CommandStatusError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to connect to the target band..
+        /// </summary>
+        internal static string ConnectionAttemptFailed {
+            get {
+                return ResourceManager.GetString("ConnectionAttemptFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The band is not running in App mode. Current Device Mode = {0}..
+        /// </summary>
+        internal static string DeviceInNonAppMode {
+            get {
+                return ResourceManager.GetString("DeviceInNonAppMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An attempt was made to write beyond the end of the stream..
+        /// </summary>
+        internal static string EofExceptionOnWrite {
+            get {
+                return ResourceManager.GetString("EofExceptionOnWrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must have at least one entry..
+        /// </summary>
+        internal static string GenericCountZero {
+            get {
+                return ResourceManager.GetString("GenericCountZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is too long..
+        /// </summary>
+        internal static string GenericLengthExceeded {
+            get {
+                return ResourceManager.GetString("GenericLengthExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A null element was encountered.
+        /// </summary>
+        internal static string GenericNullCollectionElement {
+            get {
+                return ResourceManager.GetString("GenericNullCollectionElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow this application to access the heart rate sensor on your Microsoft Band?.
+        /// </summary>
+        internal static string HeartRateSensorConsentPrompt {
+            get {
+                return ResourceManager.GetString("HeartRateSensorConsentPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel data does not match width and height..
+        /// </summary>
+        internal static string ImageDimensionPixelDataMismatch {
+            get {
+                return ResourceManager.GetString("ImageDimensionPixelDataMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid amount of apps found on the device..
+        /// </summary>
+        internal static string InvalidAppAmount {
+            get {
+                return ResourceManager.GetString("InvalidAppAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Code-39 data encountered..
+        /// </summary>
+        internal static string InvalidBarcodeCode39Data {
+            get {
+                return ResourceManager.GetString("InvalidBarcodeCode39Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Pdf417 data encountered. Some Band versions support a limited character set; see documentation for details..
+        /// </summary>
+        internal static string InvalidBarcodePdf417Data {
+            get {
+                return ResourceManager.GetString("InvalidBarcodePdf417Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Me Tile image height must be {0}..
+        /// </summary>
+        internal static string MeTileHeightHeightError {
+            get {
+                return ResourceManager.GetString("MeTileHeightHeightError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Me Tile image width must be {0}..
+        /// </summary>
+        internal static string MeTileImageWidthError {
+            get {
+                return ResourceManager.GetString("MeTileImageWidthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both title and body are null or empty..
+        /// </summary>
+        internal static string NotificationFieldsEmpty {
+            get {
+                return ResourceManager.GetString("NotificationFieldsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile ID is invalid..
+        /// </summary>
+        internal static string NotificationInvalidTileId {
+            get {
+                return ResourceManager.GetString("NotificationInvalidTileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attempted operation requires a connected band..
+        /// </summary>
+        internal static string OperationRequiredConnectedDevice {
+            get {
+                return ResourceManager.GetString("OperationRequiredConnectedDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to remove pages from Tile &apos;{0}&apos;..
+        /// </summary>
+        internal static string RemovePagesEmptyGuid {
+            get {
+                return ResourceManager.GetString("RemovePagesEmptyGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing a tile requires a non-empty Tile ID..
+        /// </summary>
+        internal static string RemoveTileEmptyTileId {
+            get {
+                return ResourceManager.GetString("RemoveTileEmptyTileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to remove the Tile &apos;{0}&apos; from the Band..
+        /// </summary>
+        internal static string RemoveTileFailed {
+            get {
+                return ResourceManager.GetString("RemoveTileFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This version of the SDK is no longer supported..
+        /// </summary>
+        internal static string SdkVersionNotSupported {
+            get {
+                return ResourceManager.GetString("SdkVersionNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This sensor type requires explicit user consent. RequestUserConsentAsync() must be called one time prior to subscribing..
+        /// </summary>
+        internal static string SensorUserConsentNotQueried {
+            get {
+                return ResourceManager.GetString("SensorUserConsentNotQueried", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to set pages on Tile &apos;{0}&apos;..
+        /// </summary>
+        internal static string SetPagesEmptyGuid {
+            get {
+                return ResourceManager.GetString("SetPagesEmptyGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot read data from the stream..
+        /// </summary>
+        internal static string StreamReadFailure {
+            get {
+                return ResourceManager.GetString("StreamReadFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot write data to the stream..
+        /// </summary>
+        internal static string StreamWriteFailure {
+            get {
+                return ResourceManager.GetString("StreamWriteFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use of an unsupported sensor..
+        /// </summary>
+        internal static string UnsupportedSensor {
+            get {
+                return ResourceManager.GetString("UnsupportedSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use of an unsupported reporting interval..
+        /// </summary>
+        internal static string UnsupportedSensorInterval {
+            get {
+                return ResourceManager.GetString("UnsupportedSensorInterval", resourceCulture);
             }
         }
     }
