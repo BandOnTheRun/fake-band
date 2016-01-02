@@ -34,6 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BandResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BandResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Fakes\FakeAccelerometerReading.cs" />
     <Compile Include="Fakes\FakeAccelerometerSensor.cs" />
     <Compile Include="Fakes\FakeAltimeterReading.cs" />
@@ -99,6 +104,12 @@
   <ItemGroup>
     <Compile Include="Utils\ImageConversionStreamBase.cs" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BandResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BandResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

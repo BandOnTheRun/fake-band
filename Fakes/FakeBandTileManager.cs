@@ -1,4 +1,5 @@
-﻿using Microsoft.Band.Tiles;
+﻿using FakeBand;
+using Microsoft.Band.Tiles;
 using Microsoft.Band.Tiles.Pages;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,44 @@ namespace MSBandAzure.Services.Fakes
 
         public Task<bool> AddTileAsync(BandTile tile, CancellationToken token)
         {
+            if (tile == null)
+            {
+                throw new ArgumentNullException("tile");
+            }
+            if (string.IsNullOrWhiteSpace(tile.Name))
+            {
+                throw new ArgumentException(BandResource.BandTileEmptyName, "tile");
+            }
+            //if (tile.SmallIcon == null)
+            //{
+            //    throw new ArgumentException(BandResources.BandTileNoSmallIcon, "tile");
+            //}
+            //if (tile.TileIcon == null)
+            //{
+            //    throw new ArgumentException(BandResources.BandTileNoTileIcon, "tile");
+            //}
+            //this.CheckIfDisposed();
+            //this.CheckIfDisconnectedOrUpdateMode();
+            //if (tile.AdditionalIcons.Count + 2 > this.BandTypeConstants.MaxIconsPerTile)
+            //{
+            //    throw new ArgumentException(BandResources.BandTileTooManyIcons, "tile");
+            //}
+            //if (tile.PageLayouts.Count > 5)
+            //{
+            //    throw new ArgumentException(BandResources.BandTileTooManyTemplates, "tile");
+            //}
+            //foreach (PageLayout expr_101 in tile.PageLayouts)
+            //{
+            //    if (expr_101 == null)
+            //    {
+            //        throw new InvalidOperationException(BandResources.BandTileNullTemplateEncountered);
+            //    }
+            //    if (expr_101.GetSerializedByteCountAndValidate() > 768)
+            //    {
+            //        throw new ArgumentException(BandResources.BandTilePageTemplateBlobTooBig);
+            //    }
+            //}
+
             throw new NotImplementedException();
         }
 
