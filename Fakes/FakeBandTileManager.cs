@@ -29,35 +29,33 @@ namespace MSBandAzure.Services.Fakes
             {
                 throw new ArgumentException(BandResource.BandTileEmptyName, "tile");
             }
-            //if (tile.SmallIcon == null)
-            //{
-            //    throw new ArgumentException(BandResources.BandTileNoSmallIcon, "tile");
-            //}
-            //if (tile.TileIcon == null)
-            //{
-            //    throw new ArgumentException(BandResources.BandTileNoTileIcon, "tile");
-            //}
-            //this.CheckIfDisposed();
-            //this.CheckIfDisconnectedOrUpdateMode();
-            //if (tile.AdditionalIcons.Count + 2 > this.BandTypeConstants.MaxIconsPerTile)
-            //{
-            //    throw new ArgumentException(BandResources.BandTileTooManyIcons, "tile");
-            //}
-            //if (tile.PageLayouts.Count > 5)
-            //{
-            //    throw new ArgumentException(BandResources.BandTileTooManyTemplates, "tile");
-            //}
-            //foreach (PageLayout expr_101 in tile.PageLayouts)
-            //{
-            //    if (expr_101 == null)
-            //    {
-            //        throw new InvalidOperationException(BandResources.BandTileNullTemplateEncountered);
-            //    }
-            //    if (expr_101.GetSerializedByteCountAndValidate() > 768)
-            //    {
-            //        throw new ArgumentException(BandResources.BandTilePageTemplateBlobTooBig);
-            //    }
-            //}
+            if (tile.SmallIcon == null)
+            {
+                throw new ArgumentException(BandResource.BandTileNoSmallIcon, "tile");
+            }
+            if (tile.TileIcon == null)
+            {
+                throw new ArgumentException(BandResource.BandTileNoTileIcon, "tile");
+            }
+            if (tile.AdditionalIcons.Count + 2 > this.BandTypeConstants.MaxIconsPerTile)
+            {
+                throw new ArgumentException(BandResource.BandTileTooManyIcons, "tile");
+            }
+            if (tile.PageLayouts.Count > 5)
+            {
+                throw new ArgumentException(BandResource.BandTileTooManyTemplates, "tile");
+            }
+            foreach (PageLayout expr_101 in tile.PageLayouts)
+            {
+                if (expr_101 == null)
+                {
+                    throw new InvalidOperationException(BandResource.BandTileNullTemplateEncountered);
+                }
+                if (expr_101.GetSerializedByteCountAndValidate() > 768)
+                {
+                    throw new ArgumentException(BandResources.BandTilePageTemplateBlobTooBig);
+                }
+            }
 
             throw new NotImplementedException();
         }
