@@ -44,24 +44,34 @@ namespace MSBandAzure.Services.Fakes
             return;
         }
 
-        public Task ShowDialogAsync(Guid tileId, string title, string body)
+        public async Task ShowDialogAsync(Guid tileId, string title, string body)
         {
-            throw new NotImplementedException();
+            await ShowDialogAsync(tileId, title, body, CancellationToken.None); 
         }
 
-        public Task ShowDialogAsync(Guid tileId, string title, string body, CancellationToken token)
+        public async Task ShowDialogAsync(Guid tileId, string title, string body, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (tileId == Guid.Empty)
+            {
+                throw new ArgumentException(BandResource.NotificationInvalidTileId, "tileId");
+            }
+            if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(body))
+            {
+                throw new ArgumentException(BandResource.NotificationFieldsEmpty);
+            }
+
+            await Task.Delay(300);
+            return;
         }
 
-        public Task VibrateAsync(VibrationType vibrationType)
+        public async Task VibrateAsync(VibrationType vibrationType)
         {
-            throw new NotImplementedException();
+            await Task.Delay(300);
         }
 
-        public Task VibrateAsync(VibrationType vibrationType, CancellationToken token)
+        public async Task VibrateAsync(VibrationType vibrationType, CancellationToken token)
         {
-            throw new NotImplementedException();
+            await Task.Delay(300, token);
         }
     }
 }
