@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommandStatusError" xml:space="preserve">
+    <value>Device status code: 0x{0:X8} received.</value>
+  </data>
+  <data name="BandTileNoSmallIcon" xml:space="preserve">
+    <value>A BandTile must have a non-null SmallIcon property.</value>
+  </data>
+  <data name="BandTilePageTemplateUnknownOrInvalidElementType" xml:space="preserve">
+    <value>Invalid or unknown element type.</value>
+  </data>
+  <data name="InvalidBarcodePdf417Data" xml:space="preserve">
+    <value>Invalid Pdf417 data encountered. Some Band versions support a limited character set; see documentation for details.</value>
+  </data>
+  <data name="RemoveTileFailed" xml:space="preserve">
+    <value>Unable to remove the Tile '{0}' from the Band.</value>
+  </data>
+  <data name="BandTilePageTemplateInvalidCheckDigit" xml:space="preserve">
+    <value>Page template check digit mismatch.</value>
+  </data>
+  <data name="BandTilePageDataInvalidElementChildCount" xml:space="preserve">
+    <value>The data element count  is invalid.</value>
+  </data>
+  <data name="BandTilePageDataNullElementEncountered" xml:space="preserve">
+    <value>Null page data elements are not allowed.</value>
+  </data>
+  <data name="StreamWriteFailure" xml:space="preserve">
+    <value>Cannot write data to the stream.</value>
+  </data>
+  <data name="RemovePagesEmptyGuid" xml:space="preserve">
+    <value>Unable to remove pages from Tile '{0}'.</value>
+  </data>
+  <data name="SdkVersionNotSupported" xml:space="preserve">
+    <value>This version of the SDK is no longer supported.</value>
+  </data>
+  <data name="InvalidBarcodeCode39Data" xml:space="preserve">
+    <value>Invalid Code-39 data encountered.</value>
+  </data>
+  <data name="BarcodeDataTooLong" xml:space="preserve">
+    <value>Value exceeds maximum barcode data length {0}.</value>
+  </data>
+  <data name="NotificationFieldsEmpty" xml:space="preserve">
+    <value>Both title and body are null or empty.</value>
+  </data>
+  <data name="BandTileOwnedTileNameExceedsLength" xml:space="preserve">
+    <value>A Band Tile name length exceeds that allowed by owned Tiles. </value>
+  </data>
+  <data name="ByteWriteFailure" xml:space="preserve">
+    <value>Cannot write the byte value to the stream.</value>
+  </data>
+  <data name="BarcodeDataEmpty" xml:space="preserve">
+    <value>Barcode data cannot be empty.</value>
+  </data>
+  <data name="RemoveTileEmptyTileId" xml:space="preserve">
+    <value>Removing a tile requires a non-empty Tile ID.</value>
+  </data>
+  <data name="BandTilePageTemplateBlobTooBig" xml:space="preserve">
+    <value>Page template byte count exceeds the maximum.</value>
+  </data>
+  <data name="UnsupportedSensorInterval" xml:space="preserve">
+    <value>Use of an unsupported reporting interval.</value>
+  </data>
+  <data name="SensorUserConsentNotQueried" xml:space="preserve">
+    <value>This sensor type requires explicit user consent. RequestUserConsentAsync() must be called one time prior to subscribing.</value>
+  </data>
+  <data name="SetPagesEmptyGuid" xml:space="preserve">
+    <value>Unable to set pages on Tile '{0}'.</value>
+  </data>
+  <data name="EofExceptionOnWrite" xml:space="preserve">
+    <value>An attempt was made to write beyond the end of the stream.</value>
+  </data>
+  <data name="ConnectionAttemptFailed" xml:space="preserve">
+    <value>Failed to connect to the target band.</value>
+  </data>
+  <data name="BandTilePageTemplateNullElementEncountered" xml:space="preserve">
+    <value>Null page template elements not not allowed.</value>
+  </data>
+  <data name="BandTileEmptyName" xml:space="preserve">
+    <value>A BandTile must have a non-empty Name property.</value>
+  </data>
+  <data name="GenericNullCollectionElement" xml:space="preserve">
+    <value>A null element was encountered</value>
+  </data>
+  <data name="BandTilePageTemplateInvalidElementChildCount" xml:space="preserve">
+    <value>The page template element count is invalid.</value>
+  </data>
+  <data name="ImageDimensionPixelDataMismatch" xml:space="preserve">
+    <value>Pixel data does not match width and height.</value>
+  </data>
+  <data name="BandTileNullTemplateEncountered" xml:space="preserve">
+    <value>Null page templates not allowed.</value>
+  </data>
+  <data name="GenericLengthExceeded" xml:space="preserve">
+    <value>{0} is too long.</value>
+  </data>
+  <data name="InvalidAppAmount" xml:space="preserve">
+    <value>Invalid amount of apps found on the device.</value>
+  </data>
+  <data name="BandTilePageTemplateDuplicateElementOrId" xml:space="preserve">
+    <value>A duplicate page element or element Id was encountered.</value>
+  </data>
+  <data name="BandTileNoTileIcon" xml:space="preserve">
+    <value>A BandTile must have a non-null TileIcon property.</value>
+  </data>
+  <data name="MeTileImageWidthError" xml:space="preserve">
+    <value>Me Tile image width must be {0}.</value>
+  </data>
+  <data name="NotificationInvalidTileId" xml:space="preserve">
+    <value>Tile ID is invalid.</value>
+  </data>
+  <data name="DeviceInNonAppMode" xml:space="preserve">
+    <value>The band is not running in App mode. Current Device Mode = {0}.</value>
+  </data>
+  <data name="BandTileTooManyIcons" xml:space="preserve">
+    <value>The page icon count exceeds the maximum.</value>
+  </data>
+  <data name="BandAtMaxTileCapacity" xml:space="preserve">
+    <value>The Band already has its maximum number of Tiles.</value>
+  </data>
+  <data name="BandTileEmptyTileId" xml:space="preserve">
+    <value>A BandTile must have a non-empty Tile ID.</value>
+  </data>
+  <data name="BadDeviceCommandStatusPacket" xml:space="preserve">
+    <value>Unexpected packet type encountered while reading command status packet.</value>
+  </data>
+  <data name="OperationRequiredConnectedDevice" xml:space="preserve">
+    <value>The attempted operation requires a connected band.</value>
+  </data>
+  <data name="BandTileTooManyTemplates" xml:space="preserve">
+    <value>The page template count exceeds the maximum.</value>
+  </data>
+  <data name="BandTilePageTemplateUnexpectedElementType" xml:space="preserve">
+    <value>Unexpected element type.</value>
+  </data>
+  <data name="HeartRateSensorConsentPrompt" xml:space="preserve">
+    <value>Allow this application to access the heart rate sensor on your Microsoft Band?</value>
+  </data>
+  <data name="BandTileNameLengthExceeded" xml:space="preserve">
+    <value>The Name property must be no greater than {0} characters.</value>
+  </data>
+  <data name="StreamReadFailure" xml:space="preserve">
+    <value>Cannot read data from the stream.</value>
+  </data>
+  <data name="CargoCommandStatusUnavailable" xml:space="preserve">
+    <value>CommandStatus is not available until all data has been transferred to/from the band.</value>
+  </data>
+  <data name="UnsupportedSensor" xml:space="preserve">
+    <value>Use of an unsupported sensor.</value>
+  </data>
+  <data name="GenericCountZero" xml:space="preserve">
+    <value>{0} must have at least one entry.</value>
+  </data>
+  <data name="MeTileHeightHeightError" xml:space="preserve">
+    <value>Me Tile image height must be {0}.</value>
+  </data>
+</root>

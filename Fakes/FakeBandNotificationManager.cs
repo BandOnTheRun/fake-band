@@ -1,4 +1,6 @@
-﻿using Microsoft.Band.Notifications;
+﻿using FakeBand;
+using FakeBand.Utils;
+using Microsoft.Band.Notifications;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,34 +9,69 @@ namespace MSBandAzure.Services.Fakes
 {
     public class FakeBandNotificationManager : IBandNotificationManager
     {
-        public Task SendMessageAsync(Guid tileId, string title, string body, DateTimeOffset timestamp, MessageFlags flags = MessageFlags.None)
+        private IAppIdProvider _appIdProvider;
+        private ITileContainer _tiles;
+
+        internal FakeBandNotificationManager(IAppIdProvider appIdProvider, ITileContainer tiles)
         {
-            throw new NotImplementedException();
+            _appIdProvider = appIdProvider;
+            _tiles = tiles;
+        }
+        public async Task SendMessageAsync(Guid tileId, string title, string body, DateTimeOffset timestamp, MessageFlags flags = MessageFlags.None)
+        {
+            await SendMessageAsync(tileId, title, body, timestamp, flags, CancellationToken.None);
         }
 
-        public Task SendMessageAsync(Guid tileId, string title, string body, DateTimeOffset timestamp, MessageFlags flags, CancellationToken token)
+        public async Task SendMessageAsync(Guid tileId, string title, string body, DateTimeOffset timestamp, MessageFlags flags, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (tileId == Guid.Empty)
+            {
+                throw new ArgumentException(BandResource.NotificationInvalidTileId, "tileId");
+            }
+            if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(body))
+            {
+                throw new ArgumentException(BandResource.NotificationFieldsEmpty);
+            }
+
+            await Task.Delay(500);
+
+            var appId = _appIdProvider.GetAppId();
+            TileData installedTile = _tiles.GetTile(appId, tileId);
+
+            if (installedTile == null || installedTile.OwnerId != appId)
+                throw new Exception("Ownership or Tile invalid");
+
+            return;
         }
 
-        public Task ShowDialogAsync(Guid tileId, string title, string body)
+        public async Task ShowDialogAsync(Guid tileId, string title, string body)
         {
-            throw new NotImplementedException();
+            await ShowDialogAsync(tileId, title, body, CancellationToken.None); 
         }
 
-        public Task ShowDialogAsync(Guid tileId, string title, string body, CancellationToken token)
+        public async Task ShowDialogAsync(Guid tileId, string title, string body, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (tileId == Guid.Empty)
+            {
+                throw new ArgumentException(BandResource.NotificationInvalidTileId, "tileId");
+            }
+            if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(body))
+            {
+                throw new ArgumentException(BandResource.NotificationFieldsEmpty);
+            }
+
+            await Task.Delay(300);
+            return;
         }
 
-        public Task VibrateAsync(VibrationType vibrationType)
+        public async Task VibrateAsync(VibrationType vibrationType)
         {
-            throw new NotImplementedException();
+            await Task.Delay(300);
         }
 
-        public Task VibrateAsync(VibrationType vibrationType, CancellationToken token)
+        public async Task VibrateAsync(VibrationType vibrationType, CancellationToken token)
         {
-            throw new NotImplementedException();
+            await Task.Delay(300, token);
         }
     }
 }
