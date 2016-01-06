@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>FakeBand</id>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,8 +11,8 @@
     <iconUrl>https://avatars2.githubusercontent.com/u/15046428?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library to enable programming against the Band SDK model without connecting a physical band</description>
-    <releaseNotes>Added dummy Me Tile APIs, Added more dummy sensors</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <releaseNotes>Initial implementation for Tile Manager, Initial Implementation for Notification Manager, More sensors supported (thanks to @rreynolds)</releaseNotes>
+    <copyright>Copyright 2016</copyright>
     <tags>Band</tags>
   </metadata>
 </package>
