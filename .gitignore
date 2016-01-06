@@ -4,6 +4,8 @@
 # prevent keys in web.config being stored 
 project.lock.json
 
+.vs
+
 # User-specific files
 *.suo
 *.user
