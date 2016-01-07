@@ -1,10 +1,10 @@
 ﻿using FakeBand.Fakes;
 using Microsoft.Band;
-using MSBandAzure.Services.Fakes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace FakeBand.Tests.Utils
 {
