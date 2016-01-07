@@ -1,12 +1,25 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Band.Sensors;
 using System;
+using System.Collections.Generic;
+using FakeBand.Utils;
 
 namespace FakeBand.Fakes
 {
     internal class FakeDeviceContactSensor : FakeBandSensor<IBandContactReading>, IBandContactSensor
     {
-        public FakeDeviceContactSensor()
+        public FakeDeviceContactSensor() : 
+            base(new List<BandType>
+        {
+            BandType.Cargo,
+            BandType.Envoy
+        }, new Dictionary<TimeSpan, SubscriptionType>
+        {
+            {
+                TimeSpan.Zero,
+                SubscriptionType.DeviceContact
+            }
+        })
         {
             State = new FakeBandDeviceContactReading(BandContactState.Worn);
         }

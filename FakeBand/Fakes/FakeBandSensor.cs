@@ -1,4 +1,5 @@
-﻿using Microsoft.Band;
+﻿using FakeBand.Utils;
+using Microsoft.Band;
 using Microsoft.Band.Sensors;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace FakeBand.Fakes
 {
     public abstract class FakeBandSensor<T> : IBandSensor<T> where T : IBandSensorReading
     {
-        public FakeBandSensor()
+        public FakeBandSensor(IEnumerable<BandType> supportedBandClasses, Dictionary<TimeSpan, SubscriptionType> supportedReportingSubscriptions)
         {
 
         }

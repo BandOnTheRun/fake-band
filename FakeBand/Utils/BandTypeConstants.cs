@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace FakeBand.Utils
 {
-    internal enum BandType
+    public enum BandType
     {
         Unknown,
         Cargo,

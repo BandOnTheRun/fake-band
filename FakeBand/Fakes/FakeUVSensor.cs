@@ -1,15 +1,31 @@
 ﻿using Microsoft.Band.Sensors;
-using FakeBand.Fakes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FakeBand.Utils;
 
 namespace FakeBand.Fakes
 {
     public class FakeUVSensor : FakeBandSensor<IBandUVReading>
     {
+        public FakeUVSensor() :
+            base(new List<BandType>
+        {
+            BandType.Cargo,
+            BandType.Envoy
+        }, new Dictionary<TimeSpan, SubscriptionType>
+        {
+            {
+                TimeSpan.FromMinutes(1.0),
+                SubscriptionType.UV
+            },
+            {
+                TimeSpan.FromMilliseconds(400.0),
+                SubscriptionType.UVFast
+            }
+        })
+        {
+        }
+
         Random rand = new Random();
 
         public override IBandSensorReading CreateReading()
