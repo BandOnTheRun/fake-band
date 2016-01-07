@@ -32,3 +32,28 @@ Then you can use the library like this example:
   MeTileImage.Source = wb;
 ```
 Where MeTileImage is a XAML image control
+
+Or this example to subscribe for sensor data:
+
+```cs
+var uc = bandClient.SensorManager.Accelerometer.GetCurrentUserConsent();
+bool isConsented = false;
+
+if (uc == UserConsent.NotSpecified)
+{
+    isConsented = await bandClient.SensorManager.Accelerometer.RequestUserConsentAsync();
+}
+
+if (isConsented || uc == UserConsent.Granted)
+{
+    bandClient.SensorManager.Accelerometer.ReadingChanged += async (obj, ev) =>
+    {
+        await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+        {
+            // Update User Interface...
+        });
+    };
+
+    await bandClient.SensorManager.Accelerometer.StartReadingsAsync();
+}
+```
