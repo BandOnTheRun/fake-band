@@ -157,12 +157,12 @@ namespace FakeBandClientTestApp
         public async Task StartSensor<T>(IBandClient bandClient, IBandSensor<T> sensor, 
             Action<BandSensorReadingEventArgs<T>> action) where T : IBandSensorReading
         {
-            var uc = bandClient.SensorManager.Accelerometer.GetCurrentUserConsent();
+            var uc = sensor.GetCurrentUserConsent();
             bool isConsented = false;
 
             if (uc == UserConsent.NotSpecified)
             {
-                isConsented = await bandClient.SensorManager.HeartRate.RequestUserConsentAsync();
+                isConsented = await sensor.RequestUserConsentAsync();
             }
 
             if (isConsented || uc == UserConsent.Granted)
