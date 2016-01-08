@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>FakeBand</id>
-    <version>0.0.3</version>
+    <version>0.0.4-beta</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://avatars2.githubusercontent.com/u/15046428?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library to enable programming against the Band SDK model without connecting a physical band</description>
-    <releaseNotes>Initial implementation for Tile Manager, Initial Implementation for Notification Manager, More sensors supported (thanks to @rreynolds)</releaseNotes>
+    <releaseNotes>Added support for correct sensor update intervals, Added support for configuring the Fake Bands as either Band v1 or Band v2</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>Band</tags>
   </metadata>
