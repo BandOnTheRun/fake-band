@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakePedometerSensor : FakeBandSensor<IBandPedometerReading>
     {
-        public FakePedometerSensor() :
+        public FakePedometerSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -18,7 +18,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(1.0),
                 SubscriptionType.Pedometer
             }
-        })
+        }, bandType)
         {
         }
 

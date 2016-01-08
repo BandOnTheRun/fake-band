@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeAmbientLightSensor : FakeBandSensor<IBandAmbientLightReading>
     {
-        public FakeAmbientLightSensor() :
+        public FakeAmbientLightSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Envoy
@@ -17,7 +17,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromMilliseconds(500.0),
                 SubscriptionType.AmbientLight
             }
-        })
+        }, bandType)
         {
 
         }

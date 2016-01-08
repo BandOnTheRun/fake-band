@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     public class FakeUVSensor : FakeBandSensor<IBandUVReading>
     {
-        public FakeUVSensor() :
+        internal FakeUVSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -22,7 +22,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromMilliseconds(400.0),
                 SubscriptionType.UVFast
             }
-        })
+        }, bandType)
         {
         }
 

@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeGyroSensor : FakeBandSensor<IBandGyroscopeReading>
     {
-        public FakeGyroSensor() : 
+        public FakeGyroSensor(BandTypeConstants bandType) : 
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -26,7 +26,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromMilliseconds(128.0),
                 SubscriptionType.AccelerometerGyroscope128MS
             }
-        })
+        }, bandType)
         {
         }
 

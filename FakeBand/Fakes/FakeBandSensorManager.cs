@@ -1,136 +1,158 @@
-﻿using System;
-using FakeBand.Fakes;
+﻿using FakeBand.Utils;
 using Microsoft.Band.Sensors;
+using System;
 
 namespace FakeBand.Fakes
 {
     public class FakeBandSensorManager : IBandSensorManager
     {
-        IBandSensor<IBandAccelerometerReading> _accelerometer = new FakeAccelerometerSensor();
+        Lazy<IBandSensor<IBandAccelerometerReading>> _accelerometer;
         public IBandSensor<IBandAccelerometerReading> Accelerometer
         {
             get
             {
-                return _accelerometer;
+                return _accelerometer.Value;
             }
         }
 
-        IBandSensor<IBandCaloriesReading> _calories = new FakeCaloriesSensor();
+        Lazy<IBandSensor<IBandCaloriesReading>> _calories;
         public IBandSensor<IBandCaloriesReading> Calories
         {
             get
             {
-                return _calories;
+                return _calories.Value;
             }
         }
 
-        private IBandContactSensor _contact = new FakeDeviceContactSensor();
+        private Lazy<IBandContactSensor> _contact;
         public IBandContactSensor Contact
         {
             get
             {
-                return _contact;
+                return _contact.Value;
             }
         }
 
         
-        IBandSensor<IBandDistanceReading> _distance = new FakeDistanceSensor();
+        Lazy<IBandSensor<IBandDistanceReading>> _distance;
 
         public IBandSensor<IBandDistanceReading> Distance
         {
             get
             {
-                return _distance;
+                return _distance.Value;
             }
         }
 
-        IBandSensor<IBandGyroscopeReading> _gyroscope = new FakeGyroSensor();
+        Lazy<IBandSensor<IBandGyroscopeReading>> _gyroscope;
         public IBandSensor<IBandGyroscopeReading> Gyroscope
         {
             get
             {
-                return _gyroscope;
+                return _gyroscope.Value;
             }
         }
 
-        IBandSensor<IBandHeartRateReading> _heartRate = new FakeHeartRateSensor();
+        Lazy<IBandSensor<IBandHeartRateReading>> _heartRate;
         public IBandSensor<IBandHeartRateReading> HeartRate
         {
             get
             {
-                return _heartRate;
+                return _heartRate.Value;
             }
         }
 
-        IBandSensor<IBandPedometerReading> _pedometer = new FakePedometerSensor();
+        Lazy<IBandSensor<IBandPedometerReading>> _pedometer;
         public IBandSensor<IBandPedometerReading> Pedometer
         {
             get
             {
-                return _pedometer;
+                return _pedometer.Value;
             }
         }
 
-        IBandSensor<IBandSkinTemperatureReading> _skinTemperature = new FakeSkinTemperatureSensor();
+        Lazy<IBandSensor<IBandSkinTemperatureReading>> _skinTemperature;
         public IBandSensor<IBandSkinTemperatureReading> SkinTemperature
         {
             get
             {
-                return _skinTemperature;
+                return _skinTemperature.Value;
             }
         }
 
-        IBandSensor<IBandUVReading> _uv = new FakeUVSensor();
+        Lazy<IBandSensor<IBandUVReading>> _uv;
         public IBandSensor<IBandUVReading> UV
         {
             get
             {
-                return _uv;
+                return _uv.Value;
             }
         }
 
-        IBandSensor<IBandGsrReading> _gsr = new FakeGsrSensor();
+        Lazy<IBandSensor<IBandGsrReading>> _gsr;
         public IBandSensor<IBandGsrReading> Gsr
         {
             get
             {
-                return _gsr;
+                return _gsr.Value;
             }
         }
 
-        IBandSensor<IBandRRIntervalReading> _rRInterval = new FakeRrSensor();
+        Lazy<IBandSensor<IBandRRIntervalReading>> _rRInterval;
         public IBandSensor<IBandRRIntervalReading> RRInterval
         {
             get
             {
-                return _rRInterval;
+                return _rRInterval.Value;
             }
         }
 
-        IBandSensor<IBandAmbientLightReading> _ambientLight = new FakeAmbientLightSensor();
+        Lazy<IBandSensor<IBandAmbientLightReading>> _ambientLight;
         public IBandSensor<IBandAmbientLightReading> AmbientLight
         {
             get
             {
-                return _ambientLight;
+                return _ambientLight.Value;
             }
         }
 
-        IBandSensor<IBandBarometerReading> _barometer = new FakeBarometerSensor();
+        Lazy<IBandSensor<IBandBarometerReading>> _barometer;
         public IBandSensor<IBandBarometerReading> Barometer
         {
             get
             {
-                return _barometer;
+                return _barometer.Value;
             }
         }
 
-        IBandSensor<IBandAltimeterReading> _altimeter = new FakeAltimeterSensor();
+        private BandTypeConstants _bandType;
+
+        internal FakeBandSensorManager(BandTypeConstants bandType)
+        {
+            _bandType = bandType;
+            _accelerometer = new Lazy<IBandSensor<IBandAccelerometerReading>>(() => new FakeAccelerometerSensor(bandType));
+            _calories = new Lazy<IBandSensor<IBandCaloriesReading>>(() => new FakeCaloriesSensor(bandType));
+            _contact = new Lazy<IBandContactSensor>(() => new FakeDeviceContactSensor(bandType));
+            _distance = new Lazy<IBandSensor<IBandDistanceReading>>(() => new FakeDistanceSensor(bandType));
+            _gyroscope = new Lazy<IBandSensor<IBandGyroscopeReading>>(() => new FakeGyroSensor(bandType));
+            _heartRate = new Lazy<IBandSensor<IBandHeartRateReading>>(() => new FakeHeartRateSensor(bandType));
+            _pedometer = new Lazy<IBandSensor<IBandPedometerReading>>(() => new FakePedometerSensor(bandType));
+            _skinTemperature = new Lazy<IBandSensor<IBandSkinTemperatureReading>>(() => new FakeSkinTemperatureSensor(bandType));
+            _uv = new Lazy<IBandSensor<IBandUVReading>>(() => new FakeUVSensor(bandType));
+            _gsr = new Lazy<IBandSensor<IBandGsrReading>>(() => new FakeGsrSensor(bandType));
+            _rRInterval = new Lazy<IBandSensor<IBandRRIntervalReading>>(() => new FakeRrSensor(bandType));
+            _ambientLight = new Lazy<IBandSensor<IBandAmbientLightReading>>(() => new FakeAmbientLightSensor(bandType));
+            _barometer = new Lazy<IBandSensor<IBandBarometerReading>>(() => new FakeBarometerSensor(bandType));
+            _altimeter = new Lazy<IBandSensor<IBandAltimeterReading>>(() => new FakeAltimeterSensor(bandType));
+        }
+
+        Lazy<IBandSensor<IBandAltimeterReading>> _altimeter;
+
         public IBandSensor<IBandAltimeterReading> Altimeter
         {
             get
             {
-                return _altimeter;
+                return _altimeter.Value;
             }
         }
     }

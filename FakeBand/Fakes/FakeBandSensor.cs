@@ -3,6 +3,7 @@ using Microsoft.Band;
 using Microsoft.Band.Sensors;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,14 +12,17 @@ namespace FakeBand.Fakes
 {
     public abstract class FakeBandSensor<T> : IBandSensor<T> where T : IBandSensorReading
     {
-        public FakeBandSensor(IEnumerable<BandType> supportedBandClasses, Dictionary<TimeSpan, SubscriptionType> supportedReportingSubscriptions)
+        internal FakeBandSensor(IEnumerable<BandType> supportedBandClasses, Dictionary<TimeSpan, SubscriptionType> supportedReportingSubscriptions, BandTypeConstants type)
         {
-
+            _supportedReportingSubscriptions = supportedReportingSubscriptions;
+            _isSupported = supportedBandClasses.Contains(type.BandType);
+            _reportingInterval = _supportedReportingSubscriptions.Keys.FirstOrDefault();
         }
 
+        private bool _isSupported;
         public virtual bool IsSupported
         {
-            get { return true; }
+            get { return _isSupported; }
         }
 
         private TimeSpan _reportingInterval = TimeSpan.FromSeconds(1);
@@ -29,20 +33,23 @@ namespace FakeBand.Fakes
             {
                 return _reportingInterval;
             }
-
             set
             {
-                if (_reportingInterval == value)
-                    return;
+                if (!_supportedReportingSubscriptions.Keys.Contains(value))
+                {
+                    throw new ArgumentOutOfRangeException(BandResource.UnsupportedSensorInterval);
+                }
                 _reportingInterval = value;
             }
         }
+
+        protected Dictionary<TimeSpan, SubscriptionType> _supportedReportingSubscriptions;
 
         public virtual IEnumerable<TimeSpan> SupportedReportingIntervals
         {
             get
             {
-                throw new NotImplementedException();
+                return _supportedReportingSubscriptions.Keys;
             }
         }
 

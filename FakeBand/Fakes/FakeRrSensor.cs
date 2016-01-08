@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeRrSensor : FakeBandSensor<IBandRRIntervalReading>
     {
-        public FakeRrSensor() :
+        public FakeRrSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Envoy
@@ -17,7 +17,7 @@ namespace FakeBand.Fakes
                 TimeSpan.Zero,
                 SubscriptionType.RRInterval
             }
-        })
+        }, bandType)
         {
         }
 

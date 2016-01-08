@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     public class FakeHeartRateSensor : FakeBandSensor<IBandHeartRateReading>
     {
-        public FakeHeartRateSensor() :
+        internal FakeHeartRateSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -18,7 +18,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(1.0),
                 SubscriptionType.HeartRate
             }
-        })
+        }, bandType)
         {
         }
 

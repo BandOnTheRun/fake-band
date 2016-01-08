@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeBarometerSensor : FakeBandSensor<IBandBarometerReading>
     {
-        public FakeBarometerSensor() :
+        public FakeBarometerSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Envoy
@@ -17,7 +17,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(1.0),
                 SubscriptionType.Barometer
             }
-        })
+        }, bandType)
         {
         }
 

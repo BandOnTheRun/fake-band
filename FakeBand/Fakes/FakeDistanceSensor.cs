@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     public class FakeDistanceSensor : FakeBandSensor<IBandDistanceReading>
     {
-        public FakeDistanceSensor() :
+        internal FakeDistanceSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -18,7 +18,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(1.0),
                 SubscriptionType.Distance
             }
-        })
+        }, bandType)
         {
         }
 

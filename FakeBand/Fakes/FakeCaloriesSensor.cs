@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeCaloriesSensor : FakeBandSensor<IBandCaloriesReading>
     {
-        public FakeCaloriesSensor() :
+        public FakeCaloriesSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -18,7 +18,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(1.0),
                 SubscriptionType.Calories1S
             }
-        })
+        }, bandType)
         {
         }
 

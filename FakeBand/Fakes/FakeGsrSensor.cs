@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     public class FakeGsrSensor : FakeBandSensor<IBandGsrReading>
     {
-        public FakeGsrSensor() :
+        internal FakeGsrSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Envoy
@@ -17,7 +17,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromSeconds(5.0),
                 SubscriptionType.Gsr
             }
-        })
+        }, bandType)
         {
         }
 

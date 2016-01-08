@@ -8,7 +8,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeDeviceContactSensor : FakeBandSensor<IBandContactReading>, IBandContactSensor
     {
-        public FakeDeviceContactSensor() : 
+        public FakeDeviceContactSensor(BandTypeConstants bandType) : 
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -19,7 +19,7 @@ namespace FakeBand.Fakes
                 TimeSpan.Zero,
                 SubscriptionType.DeviceContact
             }
-        })
+        }, bandType)
         {
             State = new FakeBandDeviceContactReading(BandContactState.Worn);
         }

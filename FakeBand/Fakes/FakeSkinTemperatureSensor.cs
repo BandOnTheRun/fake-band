@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     public class FakeSkinTemperatureSensor : FakeBandSensor<IBandSkinTemperatureReading>
     {
-        public FakeSkinTemperatureSensor() :
+        internal FakeSkinTemperatureSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -18,7 +18,7 @@ namespace FakeBand.Fakes
                 TimeSpan.FromMinutes(1.0),
                 SubscriptionType.SkinTemperature
             }
-        })
+        }, bandType)
         {
         }
 

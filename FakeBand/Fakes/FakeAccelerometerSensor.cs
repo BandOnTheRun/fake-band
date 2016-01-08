@@ -7,7 +7,7 @@ namespace FakeBand.Fakes
 {
     internal class FakeAccelerometerSensor : FakeBandSensor<IBandAccelerometerReading>
     {
-        public FakeAccelerometerSensor() :
+        public FakeAccelerometerSensor(BandTypeConstants bandType) :
             base(new List<BandType>
         {
             BandType.Cargo,
@@ -26,11 +26,12 @@ namespace FakeBand.Fakes
                 TimeSpan.FromMilliseconds(128.0),
                 SubscriptionType.Accelerometer128MS
             }
-        })
+        }, bandType)
         {
         }
 
         Random rand = new Random();
+        private BandTypeConstants bandType;
 
         public override IBandSensorReading CreateReading()
         {

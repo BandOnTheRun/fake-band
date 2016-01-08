@@ -7,7 +7,6 @@ using Microsoft.Band.Tiles;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
-using FakeBand.Fakes;
 
 namespace FakeBand.Fakes
 {
@@ -29,37 +28,60 @@ namespace FakeBand.Fakes
         {
             get
             {
-                if (this._bandVersion == BandVersion.BandOne)
+                if (_bandVersion == BandVersion.BandOne)
                 {
                     return BandTypeConstants.Cargo;
                 }
                 return BandTypeConstants.Envoy;
             }
         }
+
+        private Lazy<IBandNotificationManager> _notificationManager;
+
         public IBandNotificationManager NotificationManager
         {
             get
             {
-                return new FakeBandNotificationManager(this, _container);
+                return _notificationManager.Value;
             }
         }
+
+        private Lazy<IBandPersonalizationManager> _personalizationManager;
 
         public IBandPersonalizationManager PersonalizationManager
         {
             get
             {
-                return new FakeBandPersonalizationManager();
+                return _personalizationManager.Value;
             }
         }
 
-        private IBandSensorManager _sensorManager = new FakeBandSensorManager();
+        private Lazy<IBandSensorManager> _sensorManager;
         private IBandInfo bandInfo;
         private BandVersion _bandVersion;
 
-        public FakeBandClient(IBandInfo bandInfo, BandVersion version = BandVersion.BandTwo)
+        public FakeBandClient(IBandInfo bandInfo)
         {
             this.bandInfo = bandInfo;
-            this._bandVersion = version;
+            _bandVersion = ((FakeBandInfo)bandInfo).Version;
+            _container = new Lazy<FakeTileContainer>(() => new FakeTileContainer());
+            _sensorManager = new Lazy<IBandSensorManager>(() => new FakeBandSensorManager(BandTypeConstants));
+            _notificationManager = new Lazy<IBandNotificationManager>(() => new FakeBandNotificationManager(this, Container));
+            _personalizationManager = new Lazy<IBandPersonalizationManager>(() => new FakeBandPersonalizationManager());
+            _tileManager = new Lazy<IBandTileManager>(() =>
+            {
+                IBandConstants consts = null;
+                if (_bandVersion == BandVersion.BandOne)
+                {
+                    consts = new FakeBandOneConstants();
+                }
+                else
+                {
+                    consts = new FakeBandTwoConstants();
+                }
+
+                return new FakeBandTileManager(consts, this, Container);
+            });
         }
 
         internal static Guid GetApplicationIdFromName(byte[] nameAndOwnerId, ushort friendlyNameLength)
@@ -71,33 +93,20 @@ namespace FakeBand.Fakes
         {
             get
             {
-                return _sensorManager;
+                return _sensorManager.Value;
             }
         }
 
-        IBandTileManager _tileManager;
-        private FakeTileContainer _container = new FakeTileContainer();
+        private Lazy<FakeTileContainer> _container;
+        private FakeTileContainer Container {  get { return _container.Value; } }
+
+        private Lazy<IBandTileManager> _tileManager;
 
         public IBandTileManager TileManager
         {
             get
             {
-                if (_tileManager == null)
-                {
-                    IBandConstants consts = null;
-                        
-                    if (_bandVersion == BandVersion.BandOne)
-                    {
-                        consts = new FakeBandOneConstants();
-                    }
-                    else
-                    {
-                        consts = new FakeBandTwoConstants();
-                    }
-
-                    _tileManager = new FakeBandTileManager(consts, this, _container);
-                }
-                return _tileManager;
+                return _tileManager.Value;
             }
         }
 
