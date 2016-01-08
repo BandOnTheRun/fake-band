@@ -17,7 +17,9 @@ namespace FakeBand.Tests.Utils
                 Bands = new List<IBandInfo>
                 {
                     new FakeBandInfo(BandConnectionType.Bluetooth, "Fake Band 1"),
-                }
+                },
+                UseUnitTestInterval = true,
+                UnitTestSensorInterval = TimeSpan.FromMilliseconds(100),
             });
 
             var bands = await FakeBandClientManager.Instance.GetBandsAsync();

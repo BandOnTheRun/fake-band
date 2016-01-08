@@ -83,8 +83,14 @@ namespace FakeBand.Fakes
 
         private bool Subscribe()
         {
+            TimeSpan interval;
+            if (FakeBandClientManager.Instance.UnitTesting)
+                interval = FakeBandClientManager.Instance.TestSensorInterval;
+            else
+                interval = ReportingInterval;
+
             // use an rx observable to simulate the sensor
-            var obs = Observable.Interval(ReportingInterval);
+            var obs = Observable.Interval(interval);
             _subscription = obs.Subscribe(l =>
             {
                 var rc = ReadingChanged;
