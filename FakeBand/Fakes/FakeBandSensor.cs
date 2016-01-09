@@ -102,7 +102,8 @@ namespace FakeBand.Fakes
                         return;
 
                     var t = (T)CreateReading();
-                    //if ()
+                    if (!HasReadingChanged(t))
+                        return;
 
                     BandSensorReadingEventArgs<T> e = new BandSensorReadingEventArgs<T>(t);
                     rc(this, e);

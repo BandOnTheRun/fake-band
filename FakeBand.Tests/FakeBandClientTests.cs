@@ -31,7 +31,9 @@ namespace FakeBand.Tests
                 {
                     // Set arbitrary result value
                     if (tcs.Task.Status != TaskStatus.RanToCompletion && tcs.Task.Status != TaskStatus.Faulted)
+                    {
                         tcs.SetResult(5858);
+                    }
                 };
                 await sensor.StartReadingsAsync();
             }
@@ -125,6 +127,15 @@ namespace FakeBand.Tests
         {
             var bandClient = await TestUtils.GetBandClientAsync();
             var res = await SetupSensor(bandClient.SensorManager.Contact, 500, 5858);
+
+            Assert.Equal(5858, res);
+        }
+
+        [Fact]
+        public async Task FakeBandClient_TestValueReceived_ConnectDistanceAndReceiveOneValue()
+        {
+            var bandClient = await TestUtils.GetBandClientAsync();
+            var res = await SetupSensor(bandClient.SensorManager.Distance, 500, 5858);
 
             Assert.Equal(5858, res);
         }

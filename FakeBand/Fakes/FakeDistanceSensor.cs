@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using FakeBand.Utils;
+using System.Diagnostics;
 
 namespace FakeBand.Fakes
 {
@@ -33,18 +34,23 @@ namespace FakeBand.Fakes
             // map from km/h used here to cm/s * (1000 / 36)
             DateTimeOffset lastTime;
             double newSpeed;
+            DateTimeOffset time = DateTime.Now;
             if (_cachedValue != null)
             {
                 lastTime = _cachedValue.Timestamp;
-                newSpeed = Math.Max(Math.Min(_cachedValue.Speed * (-0.05 + 0.1 * rand.NextDouble()), MaxSpeed), MinSpeed);
-                _totalDistance += (long)((DateTime.Now - lastTime).Seconds * _cachedValue.Speed);
+                double val = (-2.0 + 4.0 * rand.NextDouble());
+                if (Math.Abs(val) < 0.5)
+                    val = 0.0;
+                newSpeed = Math.Max(Math.Min(_cachedValue.Speed + val, MaxSpeed), MinSpeed);
+                _totalDistance += (long)((time - lastTime).TotalSeconds * _cachedValue.Speed);
             }
             else
             {
                 newSpeed = (25.0 * 1000.0 / 36.0) * rand.NextDouble();
             }
 
-            _cachedValue = new FakeBandDistanceReading(newSpeed, _totalDistance);
+            _cachedValue = new FakeBandDistanceReading(newSpeed, _totalDistance, time);
+            Debug.WriteLine("Distance - " + _cachedValue.ToString());
             return _cachedValue;
         }
 

@@ -1,15 +1,17 @@
 ﻿using Microsoft.Band.Sensors;
 using System;
+using System.IO;
 
 namespace FakeBand.Fakes
 {
     public class FakeBandDistanceReading : IBandDistanceReading
     {
-        public FakeBandDistanceReading(double Speeed, long TotalDistance)
+        public FakeBandDistanceReading(double speed, long totalDistance, DateTimeOffset timestamp)
         {
-            _speed = Speed;
+            _speed = speed;
             _pace = CalcPace(_speed);
-            _distance = TotalDistance;
+            _distance = totalDistance;
+            _timestamp = timestamp;
         }
 
         // speed is measured in cm/s, Pace measured in ms/m
@@ -51,11 +53,12 @@ namespace FakeBand.Fakes
             }
         }
 
+        private DateTimeOffset _timestamp;
         public DateTimeOffset Timestamp
         {
             get
             {
-                return DateTime.Now;
+                return _timestamp;
             }
         }
 
@@ -70,6 +73,11 @@ namespace FakeBand.Fakes
             {
                 return _distance;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Distance Reading: Speed [{Speed}] Pace [{Pace}] Total Distance [{TotalDistance}]";
         }
     }
 }

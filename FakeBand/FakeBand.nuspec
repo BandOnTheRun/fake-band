@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FakeBand</id>
+    <version>0.0.6-beta</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/BandOnTheRun/fake-band/blob/master/license.txt</licenseUrl>
+    <projectUrl>https://github.com/BandOnTheRun/fake-band</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/15046428?v=3&amp;s=200</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library to enable programming against the Band SDK model without connecting a physical band</description>
+    <releaseNotes>Added support for correct sensor update intervals, Added support for configuring the Fake Bands as either Band v1 or Band v2</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Band</tags>
+  </metadata>
+</package>
