@@ -3,7 +3,7 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeAccelerometerReading : IBandAccelerometerReading
+    public class FakeAccelerometerReading : IBandAccelerometerReading
     {
         private int x;
         private int y;
