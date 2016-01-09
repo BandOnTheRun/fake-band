@@ -3,7 +3,7 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeGyroReading : IBandGyroscopeReading
+    public class FakeGyroReading : IBandGyroscopeReading
     {
         private double accx;
         private double accy;

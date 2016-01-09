@@ -3,7 +3,7 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeBandDeviceContactReading : IBandContactReading
+    public class FakeBandDeviceContactReading : IBandContactReading
     {
         public FakeBandDeviceContactReading(BandContactState bandContactState)
         {

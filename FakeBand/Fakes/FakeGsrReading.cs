@@ -3,7 +3,7 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeGsrReading : IBandGsrReading
+    public class FakeGsrReading : IBandGsrReading
     {
         private int v;
 
