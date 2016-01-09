@@ -26,9 +26,11 @@ namespace FakeBand.Fakes
 
         private FakeBandPedometerReading _cachedValue;
 
+        private int _steps;
+
         public override IBandSensorReading CreateReading()
         {
-            _cachedValue = new FakeBandPedometerReading(rand.Next(1, 5000));
+            _cachedValue = new FakeBandPedometerReading(_steps++, DateTime.Now);
             return _cachedValue;
         }
 
