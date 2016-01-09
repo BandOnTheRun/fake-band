@@ -90,6 +90,7 @@
     <Compile Include="Utils\CargoVersions.cs" />
     <Compile Include="Utils\ColorScale.cs" />
     <Compile Include="Utils\Exts.cs" />
+    <Compile Include="Utils\RandomNormal.cs" />
     <Compile Include="Utils\SubscriptionType.cs" />
     <Compile Include="Utils\TileData.cs" />
     <Compile Include="Utils\TileRepresentation.cs" />

@@ -23,9 +23,22 @@ namespace FakeBand.Fakes
 
         private FakeAltimeterReading _cachedValue;
 
+        private Random _rnd = new Random();
+
         public override IBandSensorReading CreateReading()
         {
-            _cachedValue = new FakeAltimeterReading();
+            // make a flight 300 cms...
+            // Generate a random target value and then move towards it slowly, when we get 
+            // there, generate another..
+            //int target = 0;
+            //while (target == 0)
+            //    target = _rnd.Next(-5, 5);
+
+            //double steps = target * 300 / 20.0;
+
+            var rate = _rnd.NextNormal(0.0, 5.0);
+
+            _cachedValue = new FakeAltimeterReading((float)rate);
             return _cachedValue;
         }
 

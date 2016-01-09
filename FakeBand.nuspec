@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>FakeBand</id>
-    <version>0.0.4-beta</version>
+    <version>0.0.5-beta</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
