@@ -1,19 +1,35 @@
 ﻿using Microsoft.Band.Sensors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FakeBand.Fakes
 {
     public class FakeBandDistanceReading : IBandDistanceReading
     {
+        public FakeBandDistanceReading(double Speeed, long TotalDistance)
+        {
+            _speed = Speed;
+            _pace = CalcPace(_speed);
+            _distance = TotalDistance;
+        }
+
+        // speed is measured in cm/s, Pace measured in ms/m
+        // Running Speed is measured in cm/s
+        // - 3 - 15 miles per hour roughly walking - running
+        // Running Pace is measured in ms/m
+        //  3 miles per hour -> 4.8km/h -> 4800 m/h -> 480000 cm/h -> 133 cm/s
+        // (convert to pace) 133 cm / s : 0.00752 s / cm-> 0.752 s / m-> 752 ms / m
+        // 15 miles per hour-> 24.138km / h-> 24138 m / h-> 2413800 cm / h-> 670 cm / s
+        // (convert to pace) 670 cm / s :  0.00149 s / cm-> 1.49 s / m-> 1490 ms / m
+        private double CalcPace(double speed)
+        {
+            return 100000.0 / speed; 
+        }
+
         public MotionType CurrentMotion
         {
             get
             {
-                return Pace > 5.0 ? MotionType.Running : MotionType.Jogging; 
+                return Pace > 200 ? MotionType.Running : MotionType.Jogging; 
             }
         }
 
@@ -21,7 +37,7 @@ namespace FakeBand.Fakes
         {
             get
             {
-                return 10.0 * rnd.NextDouble();
+                return _pace;
             }
         }
 
@@ -31,7 +47,7 @@ namespace FakeBand.Fakes
         {
             get
             {
-                return 20.0 * rnd.NextDouble();
+                return _speed;
             }
         }
 
@@ -43,13 +59,16 @@ namespace FakeBand.Fakes
             }
         }
 
-        long _distance = (long)0.0;
+        long _distance;
+        private double _speed;
+        private double _pace;
 
+        // Mesured in cm
         public long TotalDistance
         {
             get
             {
-                return _distance += (long)0.3;
+                return _distance;
             }
         }
     }

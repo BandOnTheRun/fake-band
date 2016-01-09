@@ -21,9 +21,21 @@ namespace FakeBand.Fakes
         {
 
         }
+
+        private FakeAmbientLightReading _cachedValue;
+
         public override IBandSensorReading CreateReading()
         {
-            return new FakeAmbientLightReading();
+            _cachedValue = new FakeAmbientLightReading();
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeAmbientLightReading;
+            if (nr == null)
+                return false;
+            return nr.Brightness != _cachedValue.Brightness;
         }
     }
 }

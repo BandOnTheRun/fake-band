@@ -26,11 +26,20 @@ namespace FakeBand.Fakes
         {
         }
 
-        Random rand = new Random();
+        private FakeBandUVReading _cachedValue;
 
         public override IBandSensorReading CreateReading()
         {
-            return new FakeBandUVReading();
+            _cachedValue = new FakeBandUVReading();
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeBandUVReading;
+            if (nr == null)
+                return false;
+            return nr.IndexLevel != _cachedValue.IndexLevel;
         }
     }
 }

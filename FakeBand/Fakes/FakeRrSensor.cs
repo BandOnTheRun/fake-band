@@ -22,9 +22,21 @@ namespace FakeBand.Fakes
         }
 
         Random _rand = new Random();
+
+        private FakeBandRRIntervalReading _cachedValue;
+
         public override IBandSensorReading CreateReading()
         {
-            return new FakeBandRRIntervalReading(_rand.Next(1, 5));
+            _cachedValue = new FakeBandRRIntervalReading(_rand.Next(1, 5));
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeBandRRIntervalReading;
+            if (nr == null)
+                return false;
+            return nr.Interval != _cachedValue.Interval;
         }
     }
 }

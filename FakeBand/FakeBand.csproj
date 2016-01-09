@@ -63,11 +63,14 @@
     <Compile Include="Fakes\FakeBandTileManager.cs" />
     <Compile Include="Fakes\FakeBandTwoConstants.cs" />
     <Compile Include="Fakes\FakeBandUVReading.cs" />
+    <Compile Include="Fakes\FakeBarometerReading.cs" />
     <Compile Include="Fakes\FakeBarometerSensor.cs" />
     <Compile Include="Fakes\FakeCaloriesSensor.cs" />
     <Compile Include="Fakes\FakeDeviceContactSensor.cs" />
     <Compile Include="Fakes\FakeDistanceSensor.cs" />
+    <Compile Include="Fakes\FakeGsrReading.cs" />
     <Compile Include="Fakes\FakeGsrSensor.cs" />
+    <Compile Include="Fakes\FakeGyroReading.cs" />
     <Compile Include="Fakes\FakeGyroSensor.cs" />
     <Compile Include="Fakes\FakeHeartRateSensor.cs" />
     <Compile Include="Fakes\FakePedometerSensor.cs" />

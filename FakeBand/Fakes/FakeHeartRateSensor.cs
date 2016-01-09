@@ -23,10 +23,21 @@ namespace FakeBand.Fakes
         }
 
         Random rand = new Random();
+        private FakeBandHeartRateReading _cachedValue;
 
         public override IBandSensorReading CreateReading()
         {
-            return new FakeBandHeartRateReading(rand.Next(63, 130));
+            _cachedValue = new FakeBandHeartRateReading(rand.Next(63, 130));
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeBandHeartRateReading;
+            if (nr == null)
+                return false;
+            return nr.HeartRate != _cachedValue.HeartRate ||
+                   nr.Quality != _cachedValue.Quality;
         }
     }
 }

@@ -30,9 +30,28 @@ namespace FakeBand.Fakes
         {
         }
 
+        Random rand = new Random();
+
         public override IBandSensorReading CreateReading()
         {
-            throw new NotImplementedException();
+            _cachedValue = new FakeGyroReading(rand.NextDouble(), rand.NextDouble(), rand.NextDouble(),
+                                               rand.NextDouble(), rand.NextDouble(), rand.NextDouble());
+            return _cachedValue;
+        }
+
+        FakeGyroReading _cachedValue;
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeGyroReading;
+            if (nr == null)
+                return false;
+            return nr.AccelerationX != _cachedValue.AccelerationX ||
+                   nr.AccelerationY != _cachedValue.AccelerationY ||
+                   nr.AccelerationZ != _cachedValue.AccelerationZ ||
+                   nr.AngularVelocityX != _cachedValue.AngularVelocityX ||
+                   nr.AngularVelocityY != _cachedValue.AngularVelocityY ||
+                   nr.AngularVelocityZ != _cachedValue.AngularVelocityZ;
         }
     }
 }

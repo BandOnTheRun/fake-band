@@ -3,13 +3,41 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeAccelerometerReading : IBandSensorReading
+    internal class FakeAccelerometerReading : IBandAccelerometerReading
     {
-        private int v;
+        private int x;
+        private int y;
+        private int z;
 
-        public FakeAccelerometerReading(int v)
+        public FakeAccelerometerReading(int x, int y, int z)
         {
-            this.v = v;
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public double AccelerationX
+        {
+            get
+            {
+                return x;
+            }
+        }
+
+        public double AccelerationY
+        {
+            get
+            {
+                return y;
+            }
+        }
+
+        public double AccelerationZ
+        {
+            get
+            {
+                return z;
+            }
         }
 
         public DateTimeOffset Timestamp
@@ -17,7 +45,6 @@ namespace FakeBand.Fakes
             get
             {
                 return DateTimeOffset.Now;
-                ;
             }
         }
     }

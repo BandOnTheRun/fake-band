@@ -80,6 +80,7 @@ namespace FakeBand.Fakes
         }
 
         public abstract IBandSensorReading CreateReading();
+        public abstract bool HasReadingChanged(IBandSensorReading newReading);
 
         private bool Subscribe()
         {
@@ -89,20 +90,44 @@ namespace FakeBand.Fakes
             else
                 interval = ReportingInterval;
 
-            // use an rx observable to simulate the sensor
-            var obs = Observable.Interval(interval);
-            _subscription = obs.Subscribe(l =>
+            bool ret = false;
+            if (interval <= TimeSpan.Zero)
             {
-                var rc = ReadingChanged;
-                if (rc == null)
-                    return;
+                // Only fire an update if the value has changed (poll for change every second?)
+                var obs = Observable.Interval(TimeSpan.FromSeconds(1));
+                _subscription = obs.Subscribe(l =>
+                {
+                    var rc = ReadingChanged;
+                    if (rc == null)
+                        return;
 
-                var t = (T)CreateReading();
+                    var t = (T)CreateReading();
+                    //if ()
 
-                BandSensorReadingEventArgs<T> e = new BandSensorReadingEventArgs<T>(t);
-                rc(this, e);
-            });
-            return true;
+                    BandSensorReadingEventArgs<T> e = new BandSensorReadingEventArgs<T>(t);
+                    rc(this, e);
+                });
+
+                ret = true;
+            }
+            else
+            {
+                // use an rx observable to simulate the sensor
+                var obs = Observable.Interval(interval);
+                _subscription = obs.Subscribe(l =>
+                {
+                    var rc = ReadingChanged;
+                    if (rc == null)
+                        return;
+
+                    var t = (T)CreateReading();
+
+                    BandSensorReadingEventArgs<T> e = new BandSensorReadingEventArgs<T>(t);
+                    rc(this, e);
+                });
+                ret = true;
+            }
+            return ret;
         }
 
         public Task<bool> StartReadingsAsync(CancellationToken token)

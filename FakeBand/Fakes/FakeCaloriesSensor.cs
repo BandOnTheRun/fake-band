@@ -22,9 +22,20 @@ namespace FakeBand.Fakes
         {
         }
 
+        private FakeBandCaloriesReading _cachedValue;
+
         public override IBandSensorReading CreateReading()
         {
-            return new FakeBandCaloriesReading();
+            _cachedValue = new FakeBandCaloriesReading();
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeBandCaloriesReading;
+            if (nr == null)
+                return false;
+            return nr.Calories != _cachedValue.Calories;
         }
     }
 }

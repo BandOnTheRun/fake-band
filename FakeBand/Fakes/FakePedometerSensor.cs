@@ -22,10 +22,22 @@ namespace FakeBand.Fakes
         {
         }
 
+        Random rand = new Random();
+
+        private FakeBandPedometerReading _cachedValue;
+
         public override IBandSensorReading CreateReading()
         {
-            Random rand = new Random();
-            return new FakeBandPedometerReading(rand.Next(1,5000));
+            _cachedValue = new FakeBandPedometerReading(rand.Next(1, 5000));
+            return _cachedValue;
+        }
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeBandPedometerReading;
+            if (nr == null)
+                return false;
+            return nr.TotalSteps != _cachedValue.TotalSteps;
         }
     }
 }

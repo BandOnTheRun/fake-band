@@ -21,9 +21,22 @@ namespace FakeBand.Fakes
         {
         }
 
+        Random rand = new Random();
+
         public override IBandSensorReading CreateReading()
         {
-            throw new NotImplementedException();
+            _cachedValue = new FakeGsrReading(rand.Next(8, 12));
+            return _cachedValue;
+        }
+
+        FakeGsrReading _cachedValue;
+
+        public override bool HasReadingChanged(IBandSensorReading newReading)
+        {
+            var nr = newReading as FakeGsrReading;
+            if (nr == null)
+                return false;
+            return _cachedValue.Resistance == nr.Resistance;
         }
     }
 }
