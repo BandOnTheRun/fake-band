@@ -3,117 +3,32 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FakeBandClientTestApp"
+    xmlns:views="using:FakeBandClientTestApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:cnv="using:FakeBandClientTestApp.Converters"
     mc:Ignorable="d">
-    <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="4" />
-            <Setter Property="FontSize" Value="20" />
-        </Style>
-        <cnv:BandThemeBrushConverter x:Key="BandThemeBrushConverter" />
-        <cnv:TimeStampFormattingConverter x:Key="TimeFormatter" />
-    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ScrollViewer>
             <RelativePanel>
                 <RelativePanel x:Name="BandPanel">
-                    <TextBlock x:Name="BandHeader" Text="Band" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="MeTileLabel" Text="{x:Bind PersonalizationViewModel.MeTileLabel}" RelativePanel.Below="BandHeader"></TextBlock>
-                    <Image x:Name="MeTileImage" Source="{x:Bind PersonalizationViewModel.MeTile, Mode=OneWay}" Stretch="None" RelativePanel.RightOf="MeTileLabel" RelativePanel.AlignVerticalCenterWith="MeTileLabel"></Image>
-                    <TextBlock x:Name="ThemeLabel" Text="{x:Bind PersonalizationViewModel.ThemeLabel}" RelativePanel.Below="MeTileImage"></TextBlock>
-                    <StackPanel Orientation="Horizontal" x:Name="ThemePanel" RelativePanel.RightOf="ThemeLabel" RelativePanel.AlignVerticalCenterWith="ThemeLabel">
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.Base, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.Highlight, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.Lowlight, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.SecondaryText, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.HighContrast, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                        <Rectangle Width="50" Height="50" Fill="{x:Bind BandThemeViewModel.Muted, Converter={StaticResource BandThemeBrushConverter}, Mode=OneWay}"></Rectangle>
-                    </StackPanel>
+                    <views:PersonalizationUserControl x:Name="PersonalizationView" />
+                    <views:ThemeUserControl x:Name="ThemeView" RelativePanel.Below="PersonalizationView" />
                 </RelativePanel>
-                <RelativePanel RelativePanel.Below="BandPanel" x:Name="HeartratePanel">
-                    <TextBlock x:Name="HeartRateHeader" Text="Heart Rate" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="HeartrateLabel" Text="{x:Bind HeartRateViewModel.HeartrateLabel}" RelativePanel.Below="HeartRateHeader"></TextBlock>
-                    <TextBlock Text="{x:Bind HeartRateViewModel.HeartRate, Mode=OneWay}" RelativePanel.RightOf="HeartrateLabel" RelativePanel.AlignVerticalCenterWith="HeartrateLabel"></TextBlock>
-                    <TextBlock x:Name="QualityLabel" Text="{x:Bind HeartRateViewModel.QualityLabel}" RelativePanel.Below="HeartrateLabel"></TextBlock>
-                    <TextBlock x:Name="Quality" Text="{x:Bind HeartRateViewModel.Quality, Mode=OneWay}"   RelativePanel.RightOf="QualityLabel" RelativePanel.AlignVerticalCenterWith="QualityLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel1" Text="{x:Bind HeartRateViewModel.TimestampLabel}" RelativePanel.Below="QualityLabel"></TextBlock>
-                    <TextBlock Text="{x:Bind HeartRateViewModel.TimeStamp, Mode=OneWay, Converter={StaticResource TimeFormatter}}"   RelativePanel.RightOf="TimestampLabel1"  RelativePanel.AlignVerticalCenterWith="TimestampLabel1"></TextBlock>
-                </RelativePanel>
-                <RelativePanel x:Name="AltimeterPanel" RelativePanel.Below="HeartratePanel">
-                    <TextBlock x:Name="AltimeterHeader" Text="Altimeter" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="FlightsAscendedLabel" Text="{x:Bind AltimeterViewModel.FlightsAscendedLabel}" RelativePanel.Below="AltimeterHeader"></TextBlock>
-                    <TextBlock x:Name="FlightsAscended" Text="{x:Bind AltimeterViewModel.FlightsAscended, Mode=OneWay}"   RelativePanel.RightOf="FlightsAscendedLabel" RelativePanel.AlignVerticalCenterWith="FlightsAscendedLabel"></TextBlock>
-                    <TextBlock x:Name="FlightsDescendedLabel" Text="{x:Bind AltimeterViewModel.FlightsDescendedLabel}" RelativePanel.Below="FlightsAscendedLabel"></TextBlock>
-                    <TextBlock x:Name="FlightsDescended" Text="{x:Bind AltimeterViewModel.FlightsDescended, Mode=OneWay}"   RelativePanel.RightOf="FlightsDescendedLabel" RelativePanel.Below="FlightsAscended" RelativePanel.AlignVerticalCenterWith="FlightsDescendedLabel"></TextBlock>
-                    <TextBlock x:Name="RateLabel" Text="{x:Bind AltimeterViewModel.RateLabel}" RelativePanel.Below="FlightsDescendedLabel"></TextBlock>
-                    <TextBlock x:Name="Rate" Text="{x:Bind AltimeterViewModel.Rate, Mode=OneWay}"   RelativePanel.RightOf="RateLabel" RelativePanel.Below="FlightsDescended" RelativePanel.AlignVerticalCenterWith="RateLabel"></TextBlock>
-                    <TextBlock x:Name="SteppingGainLabel" Text="{x:Bind AltimeterViewModel.SteppingGainLabel}" RelativePanel.Below="RateLabel"></TextBlock>
-                    <TextBlock x:Name="SteppingGain" Text="{x:Bind AltimeterViewModel.SteppingGain, Mode=OneWay}"   RelativePanel.RightOf="SteppingGainLabel" RelativePanel.Below="Rate" RelativePanel.AlignVerticalCenterWith="SteppingGainLabel"></TextBlock>
-                    <TextBlock x:Name="SteppingLossLabel" Text="{x:Bind AltimeterViewModel.SteppingLossLabel}" RelativePanel.Below="SteppingGainLabel"></TextBlock>
-                    <TextBlock x:Name="SteppingLoss" Text="{x:Bind AltimeterViewModel.SteppingLoss, Mode=OneWay}"   RelativePanel.RightOf="SteppingLossLabel" RelativePanel.Below="SteppingGain" RelativePanel.AlignVerticalCenterWith="SteppingLossLabel"></TextBlock>
-                    <TextBlock x:Name="StepsAscendedLabel" Text="{x:Bind AltimeterViewModel.StepsAscendedLabel}" RelativePanel.Below="SteppingLossLabel"></TextBlock>
-                    <TextBlock x:Name="StepsAscended" Text="{x:Bind AltimeterViewModel.StepsAscended, Mode=OneWay}"   RelativePanel.RightOf="StepsAscendedLabel" RelativePanel.Below="SteppingLoss" RelativePanel.AlignVerticalCenterWith="StepsAscendedLabel"></TextBlock>
-                    <TextBlock x:Name="StepsDescendedLabel" Text="{x:Bind AltimeterViewModel.StepsDescendedLabel}" RelativePanel.Below="StepsAscendedLabel"></TextBlock>
-                    <TextBlock x:Name="StepsDescended" Text="{x:Bind AltimeterViewModel.StepsDescended, Mode=OneWay}"   RelativePanel.RightOf="StepsDescendedLabel" RelativePanel.Below="StepsAscended" RelativePanel.AlignVerticalCenterWith="StepsDescendedLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel" Text="{x:Bind AltimeterViewModel.TimestampLabel}" RelativePanel.Below="StepsDescendedLabel"></TextBlock>
-                    <TextBlock x:Name="Timestamp" Text="{x:Bind AltimeterViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel" RelativePanel.Below="StepsDescended" RelativePanel.AlignVerticalCenterWith="TimestampLabel"></TextBlock>
-                    <TextBlock x:Name="TotalGainLabel" Text="{x:Bind AltimeterViewModel.TotalGainLabel}" RelativePanel.Below="TimestampLabel"></TextBlock>
-                    <TextBlock x:Name="TotalGain" Text="{x:Bind AltimeterViewModel.TotalGain, Mode=OneWay}"   RelativePanel.RightOf="TotalGainLabel" RelativePanel.Below="Timestamp" RelativePanel.AlignVerticalCenterWith="TotalGainLabel"></TextBlock>
-                    <TextBlock x:Name="TotalLossLabel" Text="{x:Bind AltimeterViewModel.TotalLossLabel}" RelativePanel.Below="TotalGainLabel"></TextBlock>
-                    <TextBlock x:Name="TotalLoss" Text="{x:Bind AltimeterViewModel.TotalLoss, Mode=OneWay}"   RelativePanel.RightOf="TotalLossLabel" RelativePanel.Below="TotalGain" RelativePanel.AlignVerticalCenterWith="TotalLossLabel"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="AltimeterPanel" x:Name="AmbientLightPanel">
-                    <TextBlock x:Name="AmbientLightHeader" Text="Ambient Light" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="BrightnessLabel" Text="{x:Bind AmbientLightViewModel.BrightnessLabel}" RelativePanel.Below="AmbientLightHeader"></TextBlock>
-                    <TextBlock x:Name="Brightness" Text="{x:Bind AmbientLightViewModel.Brightness, Mode=OneWay}"   RelativePanel.RightOf="BrightnessLabel" RelativePanel.AlignVerticalCenterWith="BrightnessLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel2" Text="{x:Bind AmbientLightViewModel.TimestampLabel}" RelativePanel.Below="BrightnessLabel"></TextBlock>
-                    <TextBlock x:Name="Timestamp2" Text="{x:Bind AmbientLightViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel2" RelativePanel.Below="Brightness" RelativePanel.AlignVerticalCenterWith="TimestampLabel2"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="AmbientLightPanel" x:Name="DistancePanel">
-                    <TextBlock x:Name="DistanceHeader" Text="Distance" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="CurrentMotionLabel" Text="{x:Bind BandDistanceViewModel.CurrentMotionLabel}" RelativePanel.Below="DistanceHeader"></TextBlock>
-                    <TextBlock x:Name="CurrentMotion" Text="{x:Bind BandDistanceViewModel.CurrentMotion, Mode=OneWay}"   RelativePanel.RightOf="CurrentMotionLabel" RelativePanel.AlignVerticalCenterWith="CurrentMotionLabel"></TextBlock>
-                    <TextBlock x:Name="PaceLabel" Text="{x:Bind BandDistanceViewModel.PaceLabel}" RelativePanel.Below="CurrentMotionLabel"></TextBlock>
-                    <TextBlock x:Name="Pace" Text="{x:Bind BandDistanceViewModel.Pace, Mode=OneWay}"   RelativePanel.RightOf="PaceLabel" RelativePanel.Below="CurrentMotion" RelativePanel.AlignVerticalCenterWith="PaceLabel"></TextBlock>
-                    <TextBlock x:Name="SpeedLabel" Text="{x:Bind BandDistanceViewModel.SpeedLabel}" RelativePanel.Below="PaceLabel"></TextBlock>
-                    <TextBlock x:Name="Speed" Text="{x:Bind BandDistanceViewModel.Speed, Mode=OneWay}"   RelativePanel.RightOf="SpeedLabel" RelativePanel.Below="Pace" RelativePanel.AlignVerticalCenterWith="SpeedLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel3" Text="{x:Bind BandDistanceViewModel.TimestampLabel}" RelativePanel.Below="SpeedLabel"></TextBlock>
-                    <TextBlock x:Name="Timestamp3" Text="{x:Bind BandDistanceViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel3" RelativePanel.Below="Speed" RelativePanel.AlignVerticalCenterWith="TimestampLabel3"></TextBlock>
-                    <TextBlock x:Name="TotalDistanceLabel" Text="{x:Bind BandDistanceViewModel.TotalDistanceLabel}" RelativePanel.Below="TimestampLabel3"></TextBlock>
-                    <TextBlock x:Name="TotalDistance" Text="{x:Bind BandDistanceViewModel.TotalDistance, Mode=OneWay}"   RelativePanel.RightOf="TotalDistanceLabel" RelativePanel.Below="Timestamp3" RelativePanel.AlignVerticalCenterWith="TotalDistanceLabel"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="DistancePanel" x:Name="PedometerPanel">
-                    <TextBlock x:Name="PedometerHeader" Text="Pedometer" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="TimestampLabel4" Text="{x:Bind BandPedometerViewModel.TimestampLabel}" RelativePanel.Below="PedometerHeader"></TextBlock>
-                    <TextBlock x:Name="Timestamp4" Text="{x:Bind BandPedometerViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel4" RelativePanel.AlignVerticalCenterWith="TimestampLabel4"></TextBlock>
-                    <TextBlock x:Name="TotalStepsLabel" Text="{x:Bind BandPedometerViewModel.TotalStepsLabel}" RelativePanel.Below="TimestampLabel4"></TextBlock>
-                    <TextBlock x:Name="TotalSteps" Text="{x:Bind BandPedometerViewModel.TotalSteps, Mode=OneWay}"   RelativePanel.RightOf="TotalStepsLabel" RelativePanel.Below="Timestamp4" RelativePanel.AlignVerticalCenterWith="TotalStepsLabel"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="PedometerPanel" x:Name="RRIntervalPanel">
-                    <TextBlock x:Name="RRIntervalHeader" Text="RR Interval" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="IntervalLabel" Text="{x:Bind BandRRIntervalViewModel.IntervalLabel}" RelativePanel.Below="RRIntervalHeader"></TextBlock>
-                    <TextBlock x:Name="Interval" Text="{x:Bind BandRRIntervalViewModel.Interval, Mode=OneWay}"   RelativePanel.RightOf="IntervalLabel" RelativePanel.AlignVerticalCenterWith="IntervalLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel5" Text="{x:Bind BandRRIntervalViewModel.TimestampLabel}" RelativePanel.Below="IntervalLabel"></TextBlock>
-                    <TextBlock x:Name="Timestamp5" Text="{x:Bind BandRRIntervalViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel5" RelativePanel.Below="Interval" RelativePanel.AlignVerticalCenterWith="TimestampLabel5"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="RRIntervalPanel" x:Name="SkinTemperaturePanel">
-                    <TextBlock x:Name="SkinTemperatureHeader" Text="Skin Temperature" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="TemperatureLabel" Text="{x:Bind BandSkinTemperatureViewModel.TemperatureLabel}" RelativePanel.Below="SkinTemperatureHeader"></TextBlock>
-                    <TextBlock x:Name="Temperature" Text="{x:Bind BandSkinTemperatureViewModel.Temperature, Mode=OneWay}"   RelativePanel.RightOf="TemperatureLabel" RelativePanel.AlignVerticalCenterWith="TemperatureLabel"></TextBlock>
-                    <TextBlock x:Name="QualityLabel2" Text="{x:Bind BandSkinTemperatureViewModel.QualityLabel}" RelativePanel.Below="TemperatureLabel"></TextBlock>
-                    <TextBlock x:Name="Quality2" Text="{x:Bind BandSkinTemperatureViewModel.Quality, Mode=OneWay}"   RelativePanel.RightOf="QualityLabel2" RelativePanel.Below="Temperature" RelativePanel.AlignVerticalCenterWith="QualityLabel2"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel6" Text="{x:Bind BandSkinTemperatureViewModel.TimestampLabel}" RelativePanel.Below="QualityLabel2"></TextBlock>
-                    <TextBlock x:Name="Timestamp6" Text="{x:Bind BandSkinTemperatureViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel6" RelativePanel.Below="Quality2" RelativePanel.AlignVerticalCenterWith="TimestampLabel6"></TextBlock>
-                </RelativePanel>
-                <RelativePanel RelativePanel.Below="SkinTemperaturePanel" x:Name="UVPanel">
-                    <TextBlock x:Name="UVHeader" Text="UV" FontSize="28" FontWeight="Bold" />
-                    <TextBlock x:Name="IndexLevelLabel" Text="{x:Bind BandUVViewModel.IndexLevelLabel}" RelativePanel.Below="UVHeader"></TextBlock>
-                    <TextBlock x:Name="IndexLevel" Text="{x:Bind BandUVViewModel.IndexLevel, Mode=OneWay}"   RelativePanel.RightOf="IndexLevelLabel" RelativePanel.AlignVerticalCenterWith="IndexLevelLabel"></TextBlock>
-                    <TextBlock x:Name="TimestampLabel7" Text="{x:Bind BandUVViewModel.TimestampLabel}" RelativePanel.Below="IndexLevelLabel"></TextBlock>
-                    <TextBlock x:Name="Timestamp7" Text="{x:Bind BandUVViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel7" RelativePanel.Below="IndexLevel" RelativePanel.AlignVerticalCenterWith="TimestampLabel7"></TextBlock>
-                </RelativePanel>
+                
+                <views:HeartRateUserControl x:Name="HeartRateView" RelativePanel.Below="BandPanel" />
+                <views:AltimeterUserControl x:Name="AltimeterView" RelativePanel.Below="HeartRateView" />
+                <views:AmbientLightUserControl x:Name="AmbientLightView" RelativePanel.Below="AltimeterView" />
+                <views:BandDistanceUserControl x:Name="DistanceView" RelativePanel.Below="AmbientLightView" />
+                <views:BandPedometerUserControl x:Name="PedometerView" RelativePanel.Below="DistanceView" />
+                <views:BandRRIntervalUserControl x:Name="RRIntervalView" RelativePanel.Below="PedometerView" />
+                <views:BandSkinTemperatureUserControl x:Name="SkinTemperatureView" RelativePanel.Below="RRIntervalView" />
+                <views:BandUVUserControl x:Name="UVView" RelativePanel.Below="SkinTemperatureView" />
+                <views:GyroUserControl x:Name="GyroView" RelativePanel.Below="UVView" />
+                <views:ContactUserControl x:Name="ContactView" RelativePanel.Below="GyroView" />
+                <views:GsrUserControl x:Name="GsrView" RelativePanel.Below="ContactView" />
+                <views:AccelerometerUserControl x:Name="AccelerometerView" RelativePanel.Below="GsrView" />
+                <views:BandCaloriesUserControl x:Name="CaloriesView" RelativePanel.Below="AccelerometerView" />
+                
             </RelativePanel>
         </ScrollViewer>
     </Grid>

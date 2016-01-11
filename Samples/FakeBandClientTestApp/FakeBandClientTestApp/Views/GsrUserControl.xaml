@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.GsrUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel>
+        <TextBlock x:Name="GsrHeader" Text="Gsr"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="ResistanceLabel"  Text="{x:Bind GsrViewModel.ResistanceLabel}" RelativePanel.Below="GsrHeader"></TextBlock>
+        <TextBlock x:Name="Resistance" Text="{x:Bind GsrViewModel.Resistance, Mode=OneWay}"  RelativePanel.RightOf="ResistanceLabel" RelativePanel.AlignVerticalCenterWith="ResistanceLabel"></TextBlock>
+        <TextBlock x:Name="TimestampLabel"  Text="{x:Bind GsrViewModel.TimestampLabel}" RelativePanel.Below="ResistanceLabel"></TextBlock>
+        <TextBlock x:Name="Timestamp" Text="{x:Bind GsrViewModel.Timestamp, Mode=OneWay}"  RelativePanel.RightOf="TimestampLabel" RelativePanel.Below="Resistance" RelativePanel.AlignVerticalCenterWith="TimestampLabel"></TextBlock>
+    </RelativePanel>
+</UserControl>

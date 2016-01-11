@@ -3,7 +3,6 @@ using FakeBand.Fakes;
 using FakeBandClientTestApp.ViewModels;
 using Microsoft.Band;
 using Microsoft.Band.Sensors;
-using MSBandAzure.Services.Fakes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,16 +21,6 @@ namespace FakeBandClientTestApp
     public sealed partial class MainPage : Page
     {
         static readonly public string LabelPostfix = ": ";
-        public HeartRateViewModel HeartRateViewModel { get; set; } = new HeartRateViewModel();
-        public AltimeterViewModel AltimeterViewModel { get; set; } = new AltimeterViewModel();
-        public AmbientLightViewModel AmbientLightViewModel { get; set; } = new AmbientLightViewModel();
-        public BandDistanceViewModel BandDistanceViewModel { get; set; } = new BandDistanceViewModel();
-        public BandPedometerViewModel BandPedometerViewModel { get; set; } = new BandPedometerViewModel();
-        public BandRRIntervalViewModel BandRRIntervalViewModel { get; set; } = new BandRRIntervalViewModel();
-        public BandSkinTemperatureViewModel BandSkinTemperatureViewModel { get; set; } = new BandSkinTemperatureViewModel();
-        public BandUVViewModel BandUVViewModel { get; set; } = new BandUVViewModel();
-        public PersonalizationViewModel PersonalizationViewModel { get; set; } = new PersonalizationViewModel();
-        public BandThemeViewModel BandThemeViewModel { get; set; } = new BandThemeViewModel();
 
         public MainPage()
         {
@@ -39,29 +28,13 @@ namespace FakeBandClientTestApp
             // sensor callbacks
             // Also generate chunks of XAML based on the Viewmodela
             // Note. not intended to run as part of the app.
-            //var str = CodeGen.GenerateXamlFromClass(new BandDistanceViewModel());
-            //str = GenerateXamlFromClass(new BandPedometerViewModel());
-            //str = GenerateXamlFromClass(new BandRRIntervalViewModel());
-            //str = GenerateXamlFromClass(new BandSkinTemperatureViewModel());
-            //str = GenerateXamlFromClass(new BandUVViewModel());
+            //var str = CodeGen.GenerateXamlFromClass(new BandDeviceContactViewModel());
+            //str = CodeGen.GenerateXamlFromClass(new GsrViewModel());
 
-            //var vmStr = CodeGen.GenerateViewModelCode(new BandTheme());
+            //var vmStr = CodeGen.GenerateViewModelCode(new FakeAccelerometerReading(0, 0, 0));
 
-            //vmStr = GenerateViewModelCode(new FakeBandDistanceReading ());
-            //vmStr = GenerateViewModelCode(new FakeBandPedometerReading(0));
-            //vmStr = GenerateViewModelCode(new FakeBandRRIntervalReading(0.0));
-            //vmStr = GenerateViewModelCode(new FakeBandSkinTemperatureReading(0));
-            //vmStr = GenerateViewModelCode(new FakeBandUVReading());
-
-            Mapper.CreateMap<FakeAltimeterReading, AltimeterViewModel>();
-            Mapper.CreateMap<FakeBandHeartRateReading, HeartRateViewModel>();
-            Mapper.CreateMap<FakeAmbientLightReading, AmbientLightViewModel>();
-            Mapper.CreateMap<FakeBandDistanceReading, BandDistanceViewModel>();
-            Mapper.CreateMap<FakeBandPedometerReading, BandPedometerViewModel>();
-            Mapper.CreateMap<FakeBandRRIntervalReading, BandRRIntervalViewModel>();
-            Mapper.CreateMap<FakeBandSkinTemperatureReading , BandSkinTemperatureViewModel>();
-            Mapper.CreateMap<FakeBandUVReading, BandUVViewModel>();
-            Mapper.CreateMap<BandTheme, BandThemeViewModel>();
+            //vmStr = CodeGen.GenerateViewModelCode(new FakeGsrReading (1));
+            //vmStr = CodeGen.GenerateViewModelCode(new FakeGyroReading(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 
             this.InitializeComponent();
             Loaded += OnLoad;
@@ -89,75 +62,75 @@ namespace FakeBandClientTestApp
             var bandClient = await FakeBandClientManager.Instance.ConnectAsync(bandInfo);
 
             var meTile = await bandClient.PersonalizationManager.GetMeTileImageAsync();
-            PersonalizationViewModel.MeTile = meTile.ToWriteableBitmap();
+            PersonalizationView.PersonalizationViewModel.MeTile = meTile.ToWriteableBitmap();
 
             var theme = await bandClient.PersonalizationManager.GetThemeAsync();
-            Mapper.Map(theme, BandThemeViewModel);
+            Mapper.Map(theme, ThemeView.BandThemeViewModel);
 
             await StartSensor(bandClient, bandClient.SensorManager.HeartRate, ev =>
             {
-                Mapper.Map(ev.SensorReading, HeartRateViewModel);
+                Mapper.Map(ev.SensorReading, HeartRateView.HeartRateViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.Altimeter, ev =>
             {
-                Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, AltimeterView.AltimeterViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.AmbientLight, ev =>
             {
-                Mapper.Map(ev.SensorReading, AmbientLightViewModel);
+                Mapper.Map(ev.SensorReading, AmbientLightView.AmbientLightViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.Accelerometer, ev =>
             {
-                //Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, AccelerometerView.AccelerometerViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.Calories, ev =>
             {
-                //Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, CaloriesView.BandCaloriesViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.Contact, ev =>
             {
-                //Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, ContactView.BandDeviceContactViewModel);
             });
 
             await StartSensor(bandClient, bandClient.SensorManager.Distance, ev =>
             {
-                Mapper.Map(ev.SensorReading, BandDistanceViewModel);
+                Mapper.Map(ev.SensorReading, DistanceView.BandDistanceViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.Gsr, ev =>
             {
-                //Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, GsrView.GsrViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.Gyroscope, ev =>
             {
-                //Mapper.Map(ev.SensorReading, AltimeterViewModel);
+                Mapper.Map(ev.SensorReading, GyroView.GyroViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.Pedometer, ev =>
             {
-                Mapper.Map(ev.SensorReading, BandPedometerViewModel);
+                Mapper.Map(ev.SensorReading, PedometerView.BandPedometerViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.RRInterval, ev =>
             {
-                Mapper.Map(ev.SensorReading, BandRRIntervalViewModel);
+                Mapper.Map(ev.SensorReading, RRIntervalView.BandRRIntervalViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.SkinTemperature, ev =>
             {
-                Mapper.Map(ev.SensorReading, BandSkinTemperatureViewModel);
+                Mapper.Map(ev.SensorReading, SkinTemperatureView.BandSkinTemperatureViewModel);
             });
             await StartSensor(bandClient, bandClient.SensorManager.UV, ev =>
             {
-                Mapper.Map(ev.SensorReading, BandUVViewModel);
+                Mapper.Map(ev.SensorReading, UVView.BandUVViewModel);
             });
         }
 
         public async Task StartSensor<T>(IBandClient bandClient, IBandSensor<T> sensor, 
             Action<BandSensorReadingEventArgs<T>> action) where T : IBandSensorReading
         {
-            var uc = bandClient.SensorManager.Accelerometer.GetCurrentUserConsent();
+            var uc = sensor.GetCurrentUserConsent();
             bool isConsented = false;
 
             if (uc == UserConsent.NotSpecified)

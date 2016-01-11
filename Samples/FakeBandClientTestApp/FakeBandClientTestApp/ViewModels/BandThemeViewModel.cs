@@ -1,7 +1,9 @@
 ﻿namespace FakeBandClientTestApp.ViewModels
 {
     public class BandThemeViewModel : ViewModelBase
-    {
+    { 
+        public string ThemeLabel { get { return "Theme" + MainPage.LabelPostfix; } }
+
         private Microsoft.Band.BandColor _base;
         public Microsoft.Band.BandColor Base { get { return _base; } set { Set(ref _base, value); } }
 

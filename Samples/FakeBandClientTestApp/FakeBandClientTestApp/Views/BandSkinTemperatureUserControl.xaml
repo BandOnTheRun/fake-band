@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.BandSkinTemperatureUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="SkinTemperaturePanel">
+        <TextBlock x:Name="SkinTemperatureHeader" Text="Skin Temperature"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="TemperatureLabel" Text="{x:Bind BandSkinTemperatureViewModel.TemperatureLabel}" RelativePanel.Below="SkinTemperatureHeader"></TextBlock>
+        <TextBlock x:Name="Temperature" Text="{x:Bind BandSkinTemperatureViewModel.Temperature, Mode=OneWay}"   RelativePanel.RightOf="TemperatureLabel" RelativePanel.AlignVerticalCenterWith="TemperatureLabel"></TextBlock>
+        <TextBlock x:Name="QualityLabel2" Text="{x:Bind BandSkinTemperatureViewModel.QualityLabel}" RelativePanel.Below="TemperatureLabel"></TextBlock>
+        <TextBlock x:Name="Quality2" Text="{x:Bind BandSkinTemperatureViewModel.Quality, Mode=OneWay}"   RelativePanel.RightOf="QualityLabel2" RelativePanel.Below="Temperature" RelativePanel.AlignVerticalCenterWith="QualityLabel2"></TextBlock>
+        <TextBlock x:Name="TimestampLabel6" Text="{x:Bind BandSkinTemperatureViewModel.TimestampLabel}" RelativePanel.Below="QualityLabel2"></TextBlock>
+        <TextBlock x:Name="Timestamp6" Text="{x:Bind BandSkinTemperatureViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel6" RelativePanel.Below="Quality2" RelativePanel.AlignVerticalCenterWith="TimestampLabel6"></TextBlock>
+    </RelativePanel>
+</UserControl>

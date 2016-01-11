@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.HeartRateUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="HeartratePanel">
+        <TextBlock x:Name="HeartRateHeader" Text="Heart Rate"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="HeartrateLabel" Text="{x:Bind HeartRateViewModel.HeartrateLabel}" RelativePanel.Below="HeartRateHeader"></TextBlock>
+        <TextBlock Text="{x:Bind HeartRateViewModel.HeartRate, Mode=OneWay}" RelativePanel.RightOf="HeartrateLabel" RelativePanel.AlignVerticalCenterWith="HeartrateLabel"></TextBlock>
+        <TextBlock x:Name="QualityLabel" Text="{x:Bind HeartRateViewModel.QualityLabel}" RelativePanel.Below="HeartrateLabel"></TextBlock>
+        <TextBlock x:Name="Quality" Text="{x:Bind HeartRateViewModel.Quality, Mode=OneWay}"   RelativePanel.RightOf="QualityLabel" RelativePanel.AlignVerticalCenterWith="QualityLabel"></TextBlock>
+        <TextBlock x:Name="TimestampLabel1" Text="{x:Bind HeartRateViewModel.TimestampLabel}" RelativePanel.Below="QualityLabel"></TextBlock>
+        <TextBlock Text="{x:Bind HeartRateViewModel.TimeStamp, Mode=OneWay, Converter={StaticResource TimeFormatter}}"   RelativePanel.RightOf="TimestampLabel1"  RelativePanel.AlignVerticalCenterWith="TimestampLabel1"></TextBlock>
+    </RelativePanel>
+</UserControl>

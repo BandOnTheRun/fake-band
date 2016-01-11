@@ -13,6 +13,5 @@ namespace FakeBandClientTestApp.ViewModels
         }
 
         public string MeTileLabel { get { return "MeTile" + MainPage.LabelPostfix; } }
-        public string ThemeLabel { get { return "Theme" + MainPage.LabelPostfix; } }
     }
 }

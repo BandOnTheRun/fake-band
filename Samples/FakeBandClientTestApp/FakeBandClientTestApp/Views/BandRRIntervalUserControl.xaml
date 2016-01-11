@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.BandRRIntervalUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="RRIntervalPanel">
+        <TextBlock x:Name="RRIntervalHeader" Text="RR Interval"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="IntervalLabel" Text="{x:Bind BandRRIntervalViewModel.IntervalLabel}" RelativePanel.Below="RRIntervalHeader"></TextBlock>
+        <TextBlock x:Name="Interval" Text="{x:Bind BandRRIntervalViewModel.Interval, Mode=OneWay}"   RelativePanel.RightOf="IntervalLabel" RelativePanel.AlignVerticalCenterWith="IntervalLabel"></TextBlock>
+        <TextBlock x:Name="TimestampLabel5" Text="{x:Bind BandRRIntervalViewModel.TimestampLabel}" RelativePanel.Below="IntervalLabel"></TextBlock>
+        <TextBlock x:Name="Timestamp5" Text="{x:Bind BandRRIntervalViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel5" RelativePanel.Below="Interval" RelativePanel.AlignVerticalCenterWith="TimestampLabel5"></TextBlock>
+    </RelativePanel>
+</UserControl>

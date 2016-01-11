@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.BandPedometerUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="PedometerPanel">
+        <TextBlock x:Name="PedometerHeader" Text="Pedometer"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="TimestampLabel4" Text="{x:Bind BandPedometerViewModel.TimestampLabel}" RelativePanel.Below="PedometerHeader"></TextBlock>
+        <TextBlock x:Name="Timestamp4" Text="{x:Bind BandPedometerViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel4" RelativePanel.AlignVerticalCenterWith="TimestampLabel4"></TextBlock>
+        <TextBlock x:Name="TotalStepsLabel" Text="{x:Bind BandPedometerViewModel.TotalStepsLabel}" RelativePanel.Below="TimestampLabel4"></TextBlock>
+        <TextBlock x:Name="TotalSteps" Text="{x:Bind BandPedometerViewModel.TotalSteps, Mode=OneWay}"   RelativePanel.RightOf="TotalStepsLabel" RelativePanel.Below="Timestamp4" RelativePanel.AlignVerticalCenterWith="TotalStepsLabel"></TextBlock>
+    </RelativePanel>
+</UserControl>

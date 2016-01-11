@@ -102,18 +102,67 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AccelerometerViewModel.cs" />
     <Compile Include="ViewModels\AltimeterViewModel.cs" />
     <Compile Include="ViewModels\AmbientLightViewModel.cs" />
     <Compile Include="ViewModels\BandCaloriesViewModel.cs" />
+    <Compile Include="ViewModels\BandDeviceContactViewModel.cs" />
     <Compile Include="ViewModels\BandDistanceViewModel.cs" />
     <Compile Include="ViewModels\BandPedometerViewModel.cs" />
     <Compile Include="ViewModels\BandRRIntervalViewModel.cs" />
     <Compile Include="ViewModels\BandSkinTemperatureViewModel.cs" />
     <Compile Include="ViewModels\BandThemeViewModel.cs" />
     <Compile Include="ViewModels\BandUVViewModel.cs" />
+    <Compile Include="ViewModels\GsrViewModel.cs" />
+    <Compile Include="ViewModels\GyroViewModel.cs" />
     <Compile Include="ViewModels\HeartRateViewModel.cs" />
     <Compile Include="ViewModels\PersonalizationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AccelerometerUserControl.xaml.cs">
+      <DependentUpon>AccelerometerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AltimeterUserControl.xaml.cs">
+      <DependentUpon>AltimeterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AmbientLightUserControl.xaml.cs">
+      <DependentUpon>AmbientLightUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandCaloriesUserControl.xaml.cs">
+      <DependentUpon>BandCaloriesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandDistanceUserControl.xaml.cs">
+      <DependentUpon>BandDistanceUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandPedometerUserControl.xaml.cs">
+      <DependentUpon>BandPedometerUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandRRIntervalUserControl.xaml.cs">
+      <DependentUpon>BandRRIntervalUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandSkinTemperatureUserControl.xaml.cs">
+      <DependentUpon>BandSkinTemperatureUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BandUVUserControl.xaml.cs">
+      <DependentUpon>BandUVUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContactUserControl.xaml.cs">
+      <DependentUpon>ContactUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GsrUserControl.xaml.cs">
+      <DependentUpon>GsrUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GyroUserControl.xaml.cs">
+      <DependentUpon>GyroUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HeartRateUserControl.xaml.cs">
+      <DependentUpon>HeartRateUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonalizationUserControl.xaml.cs">
+      <DependentUpon>PersonalizationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ThemeUserControl.xaml.cs">
+      <DependentUpon>ThemeUserControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -139,6 +188,66 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AccelerometerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AltimeterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AmbientLightUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandCaloriesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandDistanceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandPedometerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandRRIntervalUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandSkinTemperatureUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BandUVUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContactUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GsrUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GyroUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HeartRateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PersonalizationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ThemeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

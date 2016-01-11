@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.ContactUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel>
+        <TextBlock x:Name="ContactHeader" Text="Contact"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="TimestampLabel"  Text="{x:Bind BandDeviceContactViewModel.TimestampLabel}" RelativePanel.Below="ContactHeader"></TextBlock>
+        <TextBlock x:Name="Timestamp" Text="{x:Bind BandDeviceContactViewModel.Timestamp, Mode=OneWay}"  RelativePanel.RightOf="TimestampLabel" RelativePanel.AlignVerticalCenterWith="TimestampLabel"></TextBlock>
+        <TextBlock x:Name="StateLabel"  Text="{x:Bind BandDeviceContactViewModel.StateLabel}" RelativePanel.Below="TimestampLabel"></TextBlock>
+        <TextBlock x:Name="State" Text="{x:Bind BandDeviceContactViewModel.State, Mode=OneWay}"  RelativePanel.RightOf="StateLabel" RelativePanel.Below="Timestamp" RelativePanel.AlignVerticalCenterWith="StateLabel"></TextBlock>
+    </RelativePanel>
+</UserControl>

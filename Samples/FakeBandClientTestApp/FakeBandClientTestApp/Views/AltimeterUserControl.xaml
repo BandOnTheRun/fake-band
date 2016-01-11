@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.AltimeterUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="AltimeterPanel" RelativePanel.Below="HeartratePanel">
+        <TextBlock x:Name="AltimeterHeader" Text="Altimeter"  FontWeight="Bold"  FontSize="28" />
+        <TextBlock x:Name="FlightsAscendedLabel" Text="{x:Bind AltimeterViewModel.FlightsAscendedLabel}" RelativePanel.Below="AltimeterHeader"></TextBlock>
+        <TextBlock x:Name="FlightsAscended" Text="{x:Bind AltimeterViewModel.FlightsAscended, Mode=OneWay}"   RelativePanel.RightOf="FlightsAscendedLabel" RelativePanel.AlignVerticalCenterWith="FlightsAscendedLabel"></TextBlock>
+        <TextBlock x:Name="FlightsDescendedLabel" Text="{x:Bind AltimeterViewModel.FlightsDescendedLabel}" RelativePanel.Below="FlightsAscendedLabel"></TextBlock>
+        <TextBlock x:Name="FlightsDescended" Text="{x:Bind AltimeterViewModel.FlightsDescended, Mode=OneWay}"   RelativePanel.RightOf="FlightsDescendedLabel" RelativePanel.Below="FlightsAscended" RelativePanel.AlignVerticalCenterWith="FlightsDescendedLabel"></TextBlock>
+        <TextBlock x:Name="RateLabel" Text="{x:Bind AltimeterViewModel.RateLabel}" RelativePanel.Below="FlightsDescendedLabel"></TextBlock>
+        <TextBlock x:Name="Rate" Text="{x:Bind AltimeterViewModel.Rate, Mode=OneWay}"   RelativePanel.RightOf="RateLabel" RelativePanel.Below="FlightsDescended" RelativePanel.AlignVerticalCenterWith="RateLabel"></TextBlock>
+        <TextBlock x:Name="SteppingGainLabel" Text="{x:Bind AltimeterViewModel.SteppingGainLabel}" RelativePanel.Below="RateLabel"></TextBlock>
+        <TextBlock x:Name="SteppingGain" Text="{x:Bind AltimeterViewModel.SteppingGain, Mode=OneWay}"   RelativePanel.RightOf="SteppingGainLabel" RelativePanel.Below="Rate" RelativePanel.AlignVerticalCenterWith="SteppingGainLabel"></TextBlock>
+        <TextBlock x:Name="SteppingLossLabel" Text="{x:Bind AltimeterViewModel.SteppingLossLabel}" RelativePanel.Below="SteppingGainLabel"></TextBlock>
+        <TextBlock x:Name="SteppingLoss" Text="{x:Bind AltimeterViewModel.SteppingLoss, Mode=OneWay}"   RelativePanel.RightOf="SteppingLossLabel" RelativePanel.Below="SteppingGain" RelativePanel.AlignVerticalCenterWith="SteppingLossLabel"></TextBlock>
+        <TextBlock x:Name="StepsAscendedLabel" Text="{x:Bind AltimeterViewModel.StepsAscendedLabel}" RelativePanel.Below="SteppingLossLabel"></TextBlock>
+        <TextBlock x:Name="StepsAscended" Text="{x:Bind AltimeterViewModel.StepsAscended, Mode=OneWay}"   RelativePanel.RightOf="StepsAscendedLabel" RelativePanel.Below="SteppingLoss" RelativePanel.AlignVerticalCenterWith="StepsAscendedLabel"></TextBlock>
+        <TextBlock x:Name="StepsDescendedLabel" Text="{x:Bind AltimeterViewModel.StepsDescendedLabel}" RelativePanel.Below="StepsAscendedLabel"></TextBlock>
+        <TextBlock x:Name="StepsDescended" Text="{x:Bind AltimeterViewModel.StepsDescended, Mode=OneWay}"   RelativePanel.RightOf="StepsDescendedLabel" RelativePanel.Below="StepsAscended" RelativePanel.AlignVerticalCenterWith="StepsDescendedLabel"></TextBlock>
+        <TextBlock x:Name="TimestampLabel" Text="{x:Bind AltimeterViewModel.TimestampLabel}" RelativePanel.Below="StepsDescendedLabel"></TextBlock>
+        <TextBlock x:Name="Timestamp" Text="{x:Bind AltimeterViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel" RelativePanel.Below="StepsDescended" RelativePanel.AlignVerticalCenterWith="TimestampLabel"></TextBlock>
+        <TextBlock x:Name="TotalGainLabel" Text="{x:Bind AltimeterViewModel.TotalGainLabel}" RelativePanel.Below="TimestampLabel"></TextBlock>
+        <TextBlock x:Name="TotalGain" Text="{x:Bind AltimeterViewModel.TotalGain, Mode=OneWay}"   RelativePanel.RightOf="TotalGainLabel" RelativePanel.Below="Timestamp" RelativePanel.AlignVerticalCenterWith="TotalGainLabel"></TextBlock>
+        <TextBlock x:Name="TotalLossLabel" Text="{x:Bind AltimeterViewModel.TotalLossLabel}" RelativePanel.Below="TotalGainLabel"></TextBlock>
+        <TextBlock x:Name="TotalLoss" Text="{x:Bind AltimeterViewModel.TotalLoss, Mode=OneWay}"   RelativePanel.RightOf="TotalLossLabel" RelativePanel.Below="TotalGain" RelativePanel.AlignVerticalCenterWith="TotalLossLabel"></TextBlock>
+    </RelativePanel>
+</UserControl>

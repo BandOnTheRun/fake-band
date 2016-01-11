@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="FakeBandClientTestApp.Views.BandDistanceUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FakeBandClientTestApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <RelativePanel x:Name="DistancePanel">
+        <TextBlock x:Name="DistanceHeader" Text="Distance"  FontWeight="Bold" FontSize="28" />
+        <TextBlock x:Name="CurrentMotionLabel" Text="{x:Bind BandDistanceViewModel.CurrentMotionLabel}" RelativePanel.Below="DistanceHeader"></TextBlock>
+        <TextBlock x:Name="CurrentMotion" Text="{x:Bind BandDistanceViewModel.CurrentMotion, Mode=OneWay}"   RelativePanel.RightOf="CurrentMotionLabel" RelativePanel.AlignVerticalCenterWith="CurrentMotionLabel"></TextBlock>
+        <TextBlock x:Name="PaceLabel" Text="{x:Bind BandDistanceViewModel.PaceLabel}" RelativePanel.Below="CurrentMotionLabel"></TextBlock>
+        <TextBlock x:Name="Pace" Text="{x:Bind BandDistanceViewModel.Pace, Mode=OneWay}"   RelativePanel.RightOf="PaceLabel" RelativePanel.Below="CurrentMotion" RelativePanel.AlignVerticalCenterWith="PaceLabel"></TextBlock>
+        <TextBlock x:Name="SpeedLabel" Text="{x:Bind BandDistanceViewModel.SpeedLabel}" RelativePanel.Below="PaceLabel"></TextBlock>
+        <TextBlock x:Name="Speed" Text="{x:Bind BandDistanceViewModel.Speed, Mode=OneWay}"   RelativePanel.RightOf="SpeedLabel" RelativePanel.Below="Pace" RelativePanel.AlignVerticalCenterWith="SpeedLabel"></TextBlock>
+        <TextBlock x:Name="TimestampLabel3" Text="{x:Bind BandDistanceViewModel.TimestampLabel}" RelativePanel.Below="SpeedLabel"></TextBlock>
+        <TextBlock x:Name="Timestamp3" Text="{x:Bind BandDistanceViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel3" RelativePanel.Below="Speed" RelativePanel.AlignVerticalCenterWith="TimestampLabel3"></TextBlock>
+        <TextBlock x:Name="TotalDistanceLabel" Text="{x:Bind BandDistanceViewModel.TotalDistanceLabel}" RelativePanel.Below="TimestampLabel3"></TextBlock>
+        <TextBlock x:Name="TotalDistance" Text="{x:Bind BandDistanceViewModel.TotalDistance, Mode=OneWay}"   RelativePanel.RightOf="TotalDistanceLabel" RelativePanel.Below="Timestamp3" RelativePanel.AlignVerticalCenterWith="TotalDistanceLabel"></TextBlock>
+    </RelativePanel>
+</UserControl>
