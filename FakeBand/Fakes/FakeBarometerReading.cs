@@ -3,7 +3,7 @@ using Microsoft.Band.Sensors;
 
 namespace FakeBand.Fakes
 {
-    internal class FakeBarometerReading : IBandBarometerReading
+    public class FakeBarometerReading : IBandBarometerReading
     {
         public FakeBarometerReading(double AirPressure, double Temperature)
         {
