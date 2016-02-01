@@ -1,4 +1,6 @@
 # Fake Band
+![alt tag](https://raw.github.com/BandOnTheRun/fake-band/master/assets/nobandnoproblem.png)
+
 Library to enable programming against the Microsoft Band SDK without connecting to a physical band
 See http://peted.azurewebsites.net/fake-microsoft-band/ for further details and usage
 
