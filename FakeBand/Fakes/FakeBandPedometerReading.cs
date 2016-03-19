@@ -14,6 +14,14 @@ namespace FakeBand.Fakes
             _timestamp = timestamp;
         }
 
+        public long StepsToday
+        {
+            get
+            {
+                return 210;
+            }
+        }
+
         public DateTimeOffset Timestamp
         {
             get

@@ -192,5 +192,10 @@ namespace FakeBand.Fakes
         {
             throw new NotImplementedException();
         }
+
+        public bool TileInstalledAndOwned(ref Guid tileId, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

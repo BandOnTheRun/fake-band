@@ -56,6 +56,12 @@ namespace FakeBand.Fakes
             await Task.Delay(300);
             return Bands.ToArray();
         }
+
+        public async Task<IBandInfo[]> GetBandsAsync(bool isBackground)
+        {
+            await Task.Delay(300);
+            return Bands.ToArray();
+        }
     }
 
     public class FakeBandClientManagerOptions

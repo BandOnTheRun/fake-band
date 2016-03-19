@@ -14,6 +14,14 @@ namespace FakeBand.Fakes
             }
         }
 
+        public long CaloriesToday
+        {
+            get
+            {
+                return 32;
+            }
+        }
+
         public DateTimeOffset Timestamp
         {
             get

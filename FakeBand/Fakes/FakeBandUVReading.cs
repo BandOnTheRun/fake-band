@@ -1,14 +1,18 @@
 ﻿using Microsoft.Band.Sensors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FakeBand.Fakes
 {
     public class FakeBandUVReading : IBandUVReading
     {
+        public long ExposureToday
+        {
+            get
+            {
+                return 12;
+            }
+        }
+
         public UVIndexLevel IndexLevel
         {
             get

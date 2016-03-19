@@ -92,5 +92,21 @@ namespace FakeBand.Fakes
                 return 500 * rnd.Next();
             }
         }
+
+        public long FlightsAscendedToday
+        {
+            get
+            {
+                return 2;
+            }
+        }
+
+        public long TotalGainToday
+        {
+            get
+            {
+                return 3;
+            }
+        }
     }
 }

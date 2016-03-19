@@ -75,6 +75,14 @@ namespace FakeBand.Fakes
             }
         }
 
+        public long DistanceToday
+        {
+            get
+            {
+                return 800;
+            }
+        }
+
         public override string ToString()
         {
             return $"Distance Reading: Speed [{Speed}] Pace [{Pace}] Total Distance [{TotalDistance}]";
