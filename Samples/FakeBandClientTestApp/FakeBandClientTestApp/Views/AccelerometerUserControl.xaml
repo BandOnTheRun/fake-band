@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="AccelerometerPanel">
-        <TextBlock x:Name="AccelerometerHeader" Text="Accelerometer"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="AccelerometerHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind AccelerometerViewModel.Record}" />
+            <TextBlock Text="Accelerometer"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="AccelerationXLabel"  Text="{x:Bind AccelerometerViewModel.AccelerationXLabel}" RelativePanel.Below="AccelerometerHeader"></TextBlock>
         <TextBlock x:Name="AccelerationX" Text="{x:Bind AccelerometerViewModel.AccelerationX, Mode=OneWay}"  RelativePanel.RightOf="AccelerationXLabel" RelativePanel.AlignVerticalCenterWith="AccelerationXLabel"></TextBlock>
         <TextBlock x:Name="AccelerationYLabel"  Text="{x:Bind AccelerometerViewModel.AccelerationYLabel}" RelativePanel.Below="AccelerationXLabel"></TextBlock>

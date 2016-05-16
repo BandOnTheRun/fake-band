@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="GyroPanel">
-        <TextBlock x:Name="GyroHeader" Text="Gyroscope"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="GyroHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind GyroViewModel.Record}" />
+            <TextBlock Text="Gyroscope"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="AccelerationXLabel" Text="{x:Bind GyroViewModel.AccelerationXLabel}" RelativePanel.Below="GyroHeader"></TextBlock>
         <TextBlock x:Name="AccelerationX" Text="{x:Bind GyroViewModel.AccelerationX, Mode=OneWay}"  RelativePanel.RightOf="AccelerationXLabel" RelativePanel.AlignVerticalCenterWith="AccelerationXLabel"></TextBlock>
         <TextBlock x:Name="AccelerationYLabel"  Text="{x:Bind GyroViewModel.AccelerationYLabel}" RelativePanel.Below="AccelerationXLabel"></TextBlock>

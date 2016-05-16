@@ -16,6 +16,14 @@ namespace FakeBandClientTestApp.ViewModels
             return true;
         }
 
+        private bool? _record;
+
+        public bool? Record
+        {
+            get { return _record; }
+            set { Set(ref _record , value); }
+        }
+
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             if (PropertyChanged == null)

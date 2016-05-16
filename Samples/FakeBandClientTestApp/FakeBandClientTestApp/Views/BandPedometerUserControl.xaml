@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="PedometerPanel">
-        <TextBlock x:Name="PedometerHeader" Text="Pedometer"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="PedometerHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandPedometerViewModel.Record}" />
+            <TextBlock Text="Pedometer"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="TimestampLabel4" Text="{x:Bind BandPedometerViewModel.TimestampLabel}" RelativePanel.Below="PedometerHeader"></TextBlock>
         <TextBlock x:Name="Timestamp4" Text="{x:Bind BandPedometerViewModel.Timestamp, Mode=OneWay}"   RelativePanel.RightOf="TimestampLabel4" RelativePanel.AlignVerticalCenterWith="TimestampLabel4"></TextBlock>
         <TextBlock x:Name="TotalStepsLabel" Text="{x:Bind BandPedometerViewModel.TotalStepsLabel}" RelativePanel.Below="TimestampLabel4"></TextBlock>

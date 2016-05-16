@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel>
-        <TextBlock x:Name="GsrHeader" Text="Gsr"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="GsrHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind GsrViewModel.Record}" />
+            <TextBlock Text="Gsr"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="ResistanceLabel"  Text="{x:Bind GsrViewModel.ResistanceLabel}" RelativePanel.Below="GsrHeader"></TextBlock>
         <TextBlock x:Name="Resistance" Text="{x:Bind GsrViewModel.Resistance, Mode=OneWay}"  RelativePanel.RightOf="ResistanceLabel" RelativePanel.AlignVerticalCenterWith="ResistanceLabel"></TextBlock>
         <TextBlock x:Name="TimestampLabel"  Text="{x:Bind GsrViewModel.TimestampLabel}" RelativePanel.Below="ResistanceLabel"></TextBlock>

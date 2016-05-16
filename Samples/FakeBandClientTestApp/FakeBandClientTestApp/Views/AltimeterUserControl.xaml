@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="AltimeterPanel" RelativePanel.Below="HeartratePanel">
-        <TextBlock x:Name="AltimeterHeader" Text="Altimeter"  FontWeight="Bold"  FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="AltimeterHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind AltimeterViewModel.Record}" />
+            <TextBlock Text="Altimeter"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="FlightsAscendedLabel" Text="{x:Bind AltimeterViewModel.FlightsAscendedLabel}" RelativePanel.Below="AltimeterHeader"></TextBlock>
         <TextBlock x:Name="FlightsAscended" Text="{x:Bind AltimeterViewModel.FlightsAscended, Mode=OneWay}"   RelativePanel.RightOf="FlightsAscendedLabel" RelativePanel.AlignVerticalCenterWith="FlightsAscendedLabel"></TextBlock>
         <TextBlock x:Name="FlightsDescendedLabel" Text="{x:Bind AltimeterViewModel.FlightsDescendedLabel}" RelativePanel.Below="FlightsAscendedLabel"></TextBlock>

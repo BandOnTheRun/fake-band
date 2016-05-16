@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="AmbientLightPanel">
-        <TextBlock x:Name="AmbientLightHeader" Text="Ambient Light"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="AmbientLightHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind AmbientLightViewModel.Record}" />
+            <TextBlock Text="Ambient Light"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="BrightnessLabel" Text="{x:Bind AmbientLightViewModel.BrightnessLabel}" RelativePanel.Below="AmbientLightHeader"></TextBlock>
         <TextBlock x:Name="Brightness" Text="{x:Bind AmbientLightViewModel.Brightness, Mode=OneWay}"   RelativePanel.RightOf="BrightnessLabel" RelativePanel.AlignVerticalCenterWith="BrightnessLabel"></TextBlock>
         <TextBlock x:Name="TimestampLabel2" Text="{x:Bind AmbientLightViewModel.TimestampLabel}" RelativePanel.Below="BrightnessLabel"></TextBlock>

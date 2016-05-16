@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="DistancePanel">
-        <TextBlock x:Name="DistanceHeader" Text="Distance"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="DistanceHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandDistanceViewModel.Record}" />
+            <TextBlock Text="Distance"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="CurrentMotionLabel" Text="{x:Bind BandDistanceViewModel.CurrentMotionLabel}" RelativePanel.Below="DistanceHeader"></TextBlock>
         <TextBlock x:Name="CurrentMotion" Text="{x:Bind BandDistanceViewModel.CurrentMotion, Mode=OneWay}"   RelativePanel.RightOf="CurrentMotionLabel" RelativePanel.AlignVerticalCenterWith="CurrentMotionLabel"></TextBlock>
         <TextBlock x:Name="PaceLabel" Text="{x:Bind BandDistanceViewModel.PaceLabel}" RelativePanel.Below="CurrentMotionLabel"></TextBlock>

@@ -10,6 +10,11 @@
     d:DesignWidth="400">
 
     <Grid>
+        <StackPanel Orientation="Horizontal" x:Name="BandUVHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandUVViewModel.Record}" />
+            <TextBlock Text="UV"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
 
     </Grid>
 </UserControl>

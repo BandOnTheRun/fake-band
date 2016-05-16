@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="SkinTemperaturePanel">
-        <TextBlock x:Name="SkinTemperatureHeader" Text="Skin Temperature"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="SkinTemperatureHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandSkinTemperatureViewModel.Record}" />
+            <TextBlock Text="Skin Temperature"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="TemperatureLabel" Text="{x:Bind BandSkinTemperatureViewModel.TemperatureLabel}" RelativePanel.Below="SkinTemperatureHeader"></TextBlock>
         <TextBlock x:Name="Temperature" Text="{x:Bind BandSkinTemperatureViewModel.Temperature, Mode=OneWay}"   RelativePanel.RightOf="TemperatureLabel" RelativePanel.AlignVerticalCenterWith="TemperatureLabel"></TextBlock>
         <TextBlock x:Name="QualityLabel2" Text="{x:Bind BandSkinTemperatureViewModel.QualityLabel}" RelativePanel.Below="TemperatureLabel"></TextBlock>

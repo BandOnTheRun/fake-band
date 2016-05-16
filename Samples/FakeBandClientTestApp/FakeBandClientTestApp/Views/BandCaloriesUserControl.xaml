@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel>
-        <TextBlock x:Name="CaloriesHeader" Text="Calories"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="CaloriesHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandCaloriesViewModel.Record}" />
+            <TextBlock Text="Calories"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="CaloriesLabel"  Text="{x:Bind BandCaloriesViewModel.CaloriesLabel}" RelativePanel.Below="CaloriesHeader"></TextBlock>
         <TextBlock x:Name="Calories" Text="{x:Bind BandCaloriesViewModel.Calories, Mode=OneWay}"  RelativePanel.RightOf="CaloriesLabel" RelativePanel.AlignVerticalCenterWith="CaloriesLabel"></TextBlock>
         <TextBlock x:Name="TimestampLabel"  Text="{x:Bind BandCaloriesViewModel.TimestampLabel}" RelativePanel.Below="CaloriesLabel"></TextBlock>

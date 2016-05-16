@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="RRIntervalPanel">
-        <TextBlock x:Name="RRIntervalHeader" Text="RR Interval"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="RRIntervalHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind BandRRIntervalViewModel.Record}" />
+            <TextBlock Text="RR Interval"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="IntervalLabel" Text="{x:Bind BandRRIntervalViewModel.IntervalLabel}" RelativePanel.Below="RRIntervalHeader"></TextBlock>
         <TextBlock x:Name="Interval" Text="{x:Bind BandRRIntervalViewModel.Interval, Mode=OneWay}"   RelativePanel.RightOf="IntervalLabel" RelativePanel.AlignVerticalCenterWith="IntervalLabel"></TextBlock>
         <TextBlock x:Name="TimestampLabel5" Text="{x:Bind BandRRIntervalViewModel.TimestampLabel}" RelativePanel.Below="IntervalLabel"></TextBlock>

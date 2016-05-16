@@ -10,7 +10,11 @@
     d:DesignWidth="400">
 
     <RelativePanel x:Name="HeartratePanel">
-        <TextBlock x:Name="HeartRateHeader" Text="Heart Rate"  FontWeight="Bold" FontSize="28" />
+        <StackPanel Orientation="Horizontal" x:Name="HeartRateHeader" >
+            <CheckBox x:Name="Check" IsChecked="{x:Bind HeartRateViewModel.Record}" />
+            <TextBlock Text="Heart Rate"
+                       FontWeight="Bold" FontSize="28" />
+        </StackPanel>
         <TextBlock x:Name="HeartrateLabel" Text="{x:Bind HeartRateViewModel.HeartrateLabel}" RelativePanel.Below="HeartRateHeader"></TextBlock>
         <TextBlock Text="{x:Bind HeartRateViewModel.HeartRate, Mode=OneWay}" RelativePanel.RightOf="HeartrateLabel" RelativePanel.AlignVerticalCenterWith="HeartrateLabel"></TextBlock>
         <TextBlock x:Name="QualityLabel" Text="{x:Bind HeartRateViewModel.QualityLabel}" RelativePanel.Below="HeartrateLabel"></TextBlock>
