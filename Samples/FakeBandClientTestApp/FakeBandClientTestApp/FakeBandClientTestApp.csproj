@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="CodeGen.cs" />
+    <Compile Include="Controls\CustomTransportControls.cs" />
     <Compile Include="Converters\BandThemeBrushConverter.cs" />
     <Compile Include="Converters\TimeStampFormattingConverter.cs" />
     <Compile Include="MainPage.xaml.cs">

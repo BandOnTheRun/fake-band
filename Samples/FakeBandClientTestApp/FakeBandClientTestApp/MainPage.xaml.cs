@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using FakeBand.Fakes;
+using FakeBandClientTestApp.Controls;
 using FakeBandClientTestApp.ViewModels;
 using Microsoft.Band;
 using Microsoft.Band.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -15,12 +17,85 @@ using Windows.UI.Xaml.Controls;
 
 namespace FakeBandClientTestApp
 {
+    public class Transport : ITransport
+    {
+        DispatcherTimer _timer = new DispatcherTimer();
+        public Transport()
+        {
+            _timer.Interval = TimeSpan.FromMilliseconds(100);
+            _timer.Tick += OnTick;
+        }
+
+        DateTimeOffset _startTime;
+
+        private void OnTick(object sender, object e)
+        {
+            var dt = sender as DispatcherTimer;
+            DateTimeOffset time = DateTimeOffset.Now;
+            TimeSpan span = time - _startTime;
+            OnTicked(span);
+        }
+
+        PlayState _currentState;
+
+        public event TransportTickHandler Tick;
+
+        protected void OnTicked(TimeSpan span)
+        {
+            var ev = Tick;
+            if (ev == null)
+                return;
+            ev(span);
+        }
+
+        public PlayState CurrentState
+        {
+            get
+            {
+                return _currentState;
+            }
+
+            set
+            {
+                if (value == _currentState)
+                    return;
+                _currentState = value;
+            }
+        }
+
+        public void Pause()
+        {
+            _currentState = PlayState.Paused;
+        }
+
+        public void Play()
+        {
+            _currentState = PlayState.Playing;
+        }
+
+        public void Record()
+        {
+            _currentState = PlayState.Recording;
+            _startTime = DateTime.Now;
+            _timer.Start();
+        }
+
+        public void Stop()
+        {
+            _timer.Stop();
+        }
+
+        public long CurrentTime { get; set; }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
         static readonly public string LabelPostfix = ": ";
+
+        public Transport Transport { get; set; }
 
         public MainPage()
         {
@@ -35,6 +110,8 @@ namespace FakeBandClientTestApp
 
             //vmStr = CodeGen.GenerateViewModelCode(new FakeGsrReading (1));
             //vmStr = CodeGen.GenerateViewModelCode(new FakeGyroReading(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+
+            Transport = new Transport();
 
             this.InitializeComponent();
             Loaded += OnLoad;
